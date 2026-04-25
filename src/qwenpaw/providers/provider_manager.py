@@ -579,12 +579,13 @@ PROVIDER_ZHIPU_INTL_CODINGPLAN = OpenAIProvider(
     support_connection_check=False,
 )
 
-PROVIDER_QWENPAW = OpenAIProvider(
-    id="ltclaw_gy_x-local",
-    name="LTCLAW-GY.X Local",
-    is_local=True,
-    require_api_key=False,
-)
+# LTCLAW-GY.X - QwenPaw Local preset removed for branding reasons
+# PROVIDER_QWENPAW = OpenAIProvider(
+#     id="ltclaw_gy_x-local",
+#     name="LTCLAW-GY.X Local",
+#     is_local=True,
+#     require_api_key=False,
+# )
 
 PROVIDER_OPENAI = OpenAIProvider(
     id="openai",

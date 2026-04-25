@@ -1751,7 +1751,14 @@ def migrate_legacy_config_to_multi_agent() -> bool:
         llm_routing=(
             legacy_agents.llm_routing
             if legacy_agents.llm_routing
-            else AgentsLLMRoutingConfig()
+            else AgentsLLMRoutingConfig(
+                enabled=True,
+                mode="cloud_first",
+                cloud=ModelSlotConfig(
+                    provider_id="minimax",
+                    model="MiniMax-M2.7",
+                ),
+            )
         ),
         system_prompt_files=(
             legacy_agents.system_prompt_files
