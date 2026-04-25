@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Simplified plan mode for QwenPaw."""
+"""Simplified plan mode for LTCLAW-GY.X."""
 
 from .hints import (
     SimplePlanToHint,

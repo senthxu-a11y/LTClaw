@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""QwenPaw Agent - Main agent implementation.
+"""LTCLAW-GY.X Agent - Main agent implementation.
 
-This module provides the main QwenPawAgent class built on ReActAgent,
+This module provides the main LTCLAW-GY.XAgent class built on ReActAgent,
 with integrated tools, skills, and memory management.
 """
 
@@ -76,8 +76,8 @@ logger = logging.getLogger(__name__)
 NamesakeStrategy = Literal["override", "skip", "raise", "rename"]
 
 
-class QwenPawAgent(ToolGuardMixin, ReActAgent):
-    """QwenPaw Agent with integrated tools, skills, and memory management.
+class LTCLAW-GY.XAgent(ToolGuardMixin, ReActAgent):
+    """LTCLAW-GY.X Agent with integrated tools, skills, and memory management.
 
     This agent extends ReActAgent with:
     - Built-in tools (shell, file operations, browser, etc.)
@@ -90,7 +90,7 @@ class QwenPawAgent(ToolGuardMixin, ReActAgent):
     MRO note
     ~~~~~~~~
     ``ToolGuardMixin`` overrides ``_acting`` and ``_reasoning`` via
-    Python's MRO: QwenPawAgent → ToolGuardMixin → ReActAgent.  If you
+    Python's MRO: LTCLAW-GY.XAgent → ToolGuardMixin → ReActAgent.  If you
     add a ``_acting`` or ``_reasoning`` override in this class, you
     **must** call ``super()._acting(...)`` / ``super()._reasoning(...)``
     so the guard interception remains active.
@@ -109,7 +109,7 @@ class QwenPawAgent(ToolGuardMixin, ReActAgent):
         task_tracker: Any | None = None,
         plan_notebook: Any | None = None,
     ):
-        """Initialize QwenPawAgent.
+        """Initialize LTCLAW-GY.XAgent.
 
         Args:
             agent_config: Agent profile configuration containing all settings
@@ -620,7 +620,7 @@ class QwenPawAgent(ToolGuardMixin, ReActAgent):
     @staticmethod
     def _rebuild_mcp_client(client: Any) -> Any | None:
         """Rebuild a fresh MCP client instance from stored config metadata."""
-        rebuild_info = getattr(client, "_qwenpaw_rebuild_info", None)
+        rebuild_info = getattr(client, "_ltclaw_gy_x_rebuild_info", None)
         if not isinstance(rebuild_info, dict):
             return None
 
@@ -636,7 +636,7 @@ class QwenPawAgent(ToolGuardMixin, ReActAgent):
                     env=rebuild_info.get("env", {}),
                     cwd=rebuild_info.get("cwd"),
                 )
-                setattr(rebuilt_client, "_qwenpaw_rebuild_info", rebuild_info)
+                setattr(rebuilt_client, "_ltclaw_gy_x_rebuild_info", rebuild_info)
                 return rebuilt_client
 
             raw_headers = rebuild_info.get("headers") or {}
@@ -651,7 +651,7 @@ class QwenPawAgent(ToolGuardMixin, ReActAgent):
                 url=rebuild_info.get("url"),
                 headers=headers,
             )
-            setattr(rebuilt_client, "_qwenpaw_rebuild_info", rebuild_info)
+            setattr(rebuilt_client, "_ltclaw_gy_x_rebuild_info", rebuild_info)
             return rebuilt_client
         except Exception:  # pylint: disable=broad-except
             return None
@@ -684,7 +684,7 @@ class QwenPawAgent(ToolGuardMixin, ReActAgent):
         inp = tool_call.get("input")
         if not isinstance(inp, dict):
             return
-        for key in QwenPawAgent._PLAN_JSON_KEYS:
+        for key in LTCLAW-GY.XAgent._PLAN_JSON_KEYS:
             val = inp.get(key)
             if isinstance(val, str):
                 try:
@@ -867,7 +867,7 @@ class QwenPawAgent(ToolGuardMixin, ReActAgent):
         formatter = getattr(self, "formatter", None)
         if formatter is None:
             return
-        setattr(formatter, "_qwenpaw_force_strip_media", enabled)
+        setattr(formatter, "_ltclaw_gy_x_force_strip_media", enabled)
 
     async def _reasoning(
         self,
@@ -1095,7 +1095,7 @@ class QwenPawAgent(ToolGuardMixin, ReActAgent):
         round of calls has ended.
         """
         if isinstance(msg.content, str):
-            msg.content += QwenPawAgent._ROUND_END_NOTICE
+            msg.content += LTCLAW-GY.XAgent._ROUND_END_NOTICE
             return msg
 
         filtered = [
@@ -1114,7 +1114,7 @@ class QwenPawAgent(ToolGuardMixin, ReActAgent):
             )
 
         filtered.append(
-            {"type": "text", "text": QwenPawAgent._ROUND_END_NOTICE},
+            {"type": "text", "text": LTCLAW-GY.XAgent._ROUND_END_NOTICE},
         )
         msg.content = filtered
         return msg
@@ -1254,7 +1254,7 @@ class QwenPawAgent(ToolGuardMixin, ReActAgent):
             return msg
 
         # Normal message processing
-        logger.info("QwenPawAgent.reply: max_iters=%s", self.max_iters)
+        logger.info("LTCLAW-GY.XAgent.reply: max_iters=%s", self.max_iters)
 
         request_context = getattr(self, "_request_context", {}) or {}
         channel_name = request_context.get("channel", "console")

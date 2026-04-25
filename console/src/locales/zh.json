@@ -149,7 +149,7 @@
     "nameRequired": "请输入智能体名称",
     "namePlaceholder": "例如：我的智能体",
     "descriptionPlaceholder": "简要描述这个智能体的用途...",
-    "workspaceHelp": "留空将自动生成在 ~/.qwenpaw/workspaces/<id> 目录",
+    "workspaceHelp": "留空将自动生成在 ~/.ltclaw_gy_x/workspaces/<id> 目录",
     "dragHandleTooltip": "拖拽调整智能体顺序",
     "reorderSuccess": "智能体顺序已保存",
     "reorderFailed": "保存智能体顺序失败",
@@ -684,7 +684,7 @@
     "weixinBotTokenTooltip": "扫码登录后获取的 Bearer Token。留空时将在启动时引导扫码登录。",
     "weixinBotTokenPlaceholder": "扫码登录后自动填入，也可手动粘贴",
     "weixinBotTokenFile": "Token 文件路径",
-    "weixinBotTokenFileTooltip": "Token 持久化存储路径，默认为 ~/.qwenpaw/weixin_bot_token",
+    "weixinBotTokenFileTooltip": "Token 持久化存储路径，默认为 ~/.ltclaw_gy_x/weixin_bot_token",
     "weixinMediaDir": "媒体文件目录",
     "weixinScanLogin": "扫码登录",
     "weixinGetQrcode": "获取登录二维码",
@@ -1708,7 +1708,7 @@
     "noProvidersWarning": "未找到支持转写的提供商。请配置一个 OpenAI 提供商以启用语音转写。",
     "transcriptionInfoTitle": "转写工作原理",
     "transcriptionInfoDesc": "Whisper API 转写使用 OpenAI 兼容的 /v1/audio/transcriptions 端点。需要配置一个支持 Whisper 端点的提供商（如 OpenAI）。请在上方选择具体的提供商以启用转写。",
-    "transcriptionInfoDescLocal": "本地 Whisper 转写直接在您的设备上运行 openai-whisper 库。需要同时安装 ffmpeg（用于音频解码）和 openai-whisper Python 包。无需 API Key 或网络连接。安装命令：uv pip install 'qwenpaw[whisper]'。"
+    "transcriptionInfoDescLocal": "本地 Whisper 转写直接在您的设备上运行 openai-whisper 库。需要同时安装 ffmpeg（用于音频解码）和 openai-whisper Python 包。无需 API Key 或网络连接。安装命令：uv pip install 'ltclaw_gy_x[whisper]'。"
   },
   "backup": {
     "title": "备份",
@@ -1789,7 +1789,7 @@
     "restoreModeCustomDesc": "选择要恢复的内容，如部分智能体、配置等；当前已有但不在本次恢复范围内的其他智能体不会被移除",
     "restoreModeFullDisabled": "仅完整备份可用",
     "defaultWorkspaceDir": "智能体默认工作目录",
-    "defaultWorkspaceDirPlaceholder": "留空时将使用 ~/.qwenpaw/workspaces",
+    "defaultWorkspaceDirPlaceholder": "留空时将使用 ~/.ltclaw_gy_x/workspaces",
     "defaultWorkspaceDirHint": "待恢复的智能体的工作路径不存在时，智能体将保存在 <默认路径>/<智能体ID> 下，存在时则使用智能体的原始工作路径。",
     "restoreSuccess": "备份恢复成功，请您重启服务。",
     "restoreSuccessWithBackup": "备份恢复成功，恢复前备份 ID：{{preRestoreId}}，请您重启服务。",

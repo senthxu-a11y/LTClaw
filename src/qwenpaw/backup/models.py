@@ -32,7 +32,7 @@ class BackupScope(BaseModel):
 class BackupMeta(BaseModel):
     id: str = Field(
         default_factory=generate_backup_id,
-        description="Backup ID (qwenpaw-{version}-{timestamp}-{short8})",
+        description="Backup ID (ltclaw_gy_x-{version}-{timestamp}-{short8})",
     )
     name: str = Field(..., description="Backup name")
     description: str = Field(default="", description="Optional description")
@@ -45,9 +45,9 @@ class BackupMeta(BaseModel):
         default=0,
         description="Number of agents in this backup",
     )
-    qwenpaw_version: str = Field(
+    ltclaw_gy_x_version: str = Field(
         default="",
-        description="QwenPaw version when backup was created",
+        description="LTCLAW-GY.X version when backup was created",
     )
     system_info: dict = Field(
         default_factory=dict,

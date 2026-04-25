@@ -18,18 +18,18 @@ import click
 logger = logging.getLogger(__name__)
 
 
-def _check_qwenpaw_not_running():
-    """Check if QwenPaw is not running, exit if it is."""
-    from ..config.utils import is_qwenpaw_running
+def _check_ltclaw_gy_x_not_running():
+    """Check if LTCLAW-GY.X is not running, exit if it is."""
+    from ..config.utils import is_ltclaw_gy_x_running
 
-    if is_qwenpaw_running():
+    if is_ltclaw_gy_x_running():
         click.echo(
-            "❌ QwenPaw is currently running. Please stop it first:",
+            "❌ LTCLAW-GY.X is currently running. Please stop it first:",
             err=True,
         )
-        click.echo("   qwenpaw shutdown", err=True)
+        click.echo("   ltclaw_gy_x shutdown", err=True)
         click.echo(
-            "\n💡 Plugin operations are only allowed when QwenPaw is stopped.",
+            "\n💡 Plugin operations are only allowed when LTCLAW-GY.X is stopped.",
         )
         raise click.Abort()
 
@@ -112,14 +112,14 @@ def install(source: str, force: bool):
     """Install a plugin from local path or URL.
 
     Examples:
-        qwenpaw plugin install examples/plugins/idealab-provider
-        qwenpaw plugin install /path/to/plugin
-        qwenpaw plugin install https://example.com/plugin.zip
+        ltclaw_gy_x plugin install examples/plugins/idealab-provider
+        ltclaw_gy_x plugin install /path/to/plugin
+        ltclaw_gy_x plugin install https://example.com/plugin.zip
     """
     from ..config.utils import get_plugins_dir
 
-    # Check if QwenPaw is running
-    _check_qwenpaw_not_running()
+    # Check if LTCLAW-GY.X is running
+    _check_ltclaw_gy_x_not_running()
 
     # Check if source is a URL
     is_url = source.startswith(("http://", "https://"))
@@ -242,7 +242,7 @@ def install(source: str, force: bool):
             pass  # Ignore cleanup errors
 
     click.echo("\n💡 Next steps:")
-    click.echo("   1. Restart QwenPaw to load the plugin")
+    click.echo("   1. Restart LTCLAW-GY.X to load the plugin")
     click.echo("   2. Configure the plugin in the web UI")
 
 
@@ -342,8 +342,8 @@ def uninstall(plugin_id: str):
     """Uninstall a plugin."""
     from ..config.utils import get_plugins_dir
 
-    # Check if QwenPaw is running
-    _check_qwenpaw_not_running()
+    # Check if LTCLAW-GY.X is running
+    _check_ltclaw_gy_x_not_running()
 
     plugin_dir = get_plugins_dir() / plugin_id
 
@@ -363,7 +363,7 @@ def uninstall(plugin_id: str):
         shutil.rmtree(plugin_dir)
 
         click.echo(f"✅ Plugin '{plugin_id}' uninstalled successfully")
-        click.echo("💡 Restart QwenPaw to apply changes")
+        click.echo("💡 Restart LTCLAW-GY.X to apply changes")
     except Exception as e:
         click.echo(f"❌ Failed to uninstall plugin: {e}", err=True)
 

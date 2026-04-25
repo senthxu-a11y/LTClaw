@@ -580,8 +580,8 @@ PROVIDER_ZHIPU_INTL_CODINGPLAN = OpenAIProvider(
 )
 
 PROVIDER_QWENPAW = OpenAIProvider(
-    id="qwenpaw-local",
-    name="QwenPaw Local",
+    id="ltclaw_gy_x-local",
+    name="LTCLAW-GY.X Local",
     is_local=True,
     require_api_key=False,
 )
@@ -828,10 +828,10 @@ class ProviderManager:  # pylint: disable=too-many-public-methods
     def _normalize_provider_id(provider_id: str) -> str:
         """Normalize provider ID for backward compatibility.
 
-        Maps legacy 'copaw-local' to 'qwenpaw-local'.
+        Maps legacy 'ltclaw_gy_x-local' to 'ltclaw_gy_x-local'.
         """
-        if provider_id == "copaw-local":
-            return "qwenpaw-local"
+        if provider_id == "ltclaw_gy_x-local":
+            return "ltclaw_gy_x-local"
         return provider_id
 
     def get_provider(self, provider_id: str) -> Provider | None:
@@ -892,7 +892,7 @@ class ProviderManager:  # pylint: disable=too-many-public-methods
         """Schedule background restore of the active local model server."""
         task = asyncio.create_task(
             self._resume_local_model(local_manager),
-            name="qwenpaw-local-model-resume",
+            name="ltclaw_gy_x-local-model-resume",
         )
         task.add_done_callback(self._on_local_model_resume_done)
 
@@ -1401,32 +1401,32 @@ class ProviderManager:  # pylint: disable=too-many-public-methods
         except Exception:
             return None
 
-    def _migrate_copaw_config(self) -> None:
-        """Migrate copaw-local provider config to qwenpaw-local."""
+    def _migrate_ltclaw_gy_x_config(self) -> None:
+        """Migrate ltclaw_gy_x-local provider config to ltclaw_gy_x-local."""
         # 1. Migrate active model configuration (only provider_id)
         if (
             self.active_model
-            and self.active_model.provider_id == "copaw-local"
+            and self.active_model.provider_id == "ltclaw_gy_x-local"
         ):
-            self.active_model.provider_id = "qwenpaw-local"
+            self.active_model.provider_id = "ltclaw_gy_x-local"
             self.save_active_model(self.active_model)
             logger.info(
                 "Migrated active model provider from "
-                "'copaw-local' to 'qwenpaw-local'",
+                "'ltclaw_gy_x-local' to 'ltclaw_gy_x-local'",
             )
 
         # 2. Migrate stored provider config file
-        copaw_config_path = self.builtin_path / "copaw-local.json"
-        if not copaw_config_path.exists():
+        ltclaw_gy_x_config_path = self.builtin_path / "ltclaw_gy_x-local.json"
+        if not ltclaw_gy_x_config_path.exists():
             return
 
         try:
             # Load old config and apply to new provider instance
-            with open(copaw_config_path, "r", encoding="utf-8") as f:
+            with open(ltclaw_gy_x_config_path, "r", encoding="utf-8") as f:
                 old_config = json.load(f)
 
             # Get the new built-in provider instance
-            provider = self.builtin_providers.get("qwenpaw-local")
+            provider = self.builtin_providers.get("ltclaw_gy_x-local")
             if not provider:
                 return
 
@@ -1445,13 +1445,13 @@ class ProviderManager:  # pylint: disable=too-many-public-methods
             self._save_provider(provider, is_builtin=True)
 
             # Remove old config file
-            copaw_config_path.unlink()
+            ltclaw_gy_x_config_path.unlink()
             logger.info(
                 "Migrated provider config from "
-                "'copaw-local.json' to 'qwenpaw-local.json'",
+                "'ltclaw_gy_x-local.json' to 'ltclaw_gy_x-local.json'",
             )
         except Exception as exc:
-            logger.warning("Failed to migrate copaw-local config: %s", exc)
+            logger.warning("Failed to migrate ltclaw_gy_x-local config: %s", exc)
 
     # pylint: disable=too-many-branches
     def _migrate_legacy_providers(self):
@@ -1504,9 +1504,9 @@ class ProviderManager:  # pylint: disable=too-many-public-methods
             # Migrate active model (only provider_id, not model)
             if active_model:
                 try:
-                    # Convert legacy copaw-local provider_id
-                    if active_model.get("provider_id") == "copaw-local":
-                        active_model["provider_id"] = "qwenpaw-local"
+                    # Convert legacy ltclaw_gy_x-local provider_id
+                    if active_model.get("provider_id") == "ltclaw_gy_x-local":
+                        active_model["provider_id"] = "ltclaw_gy_x-local"
                     self.active_model = ModelSlotConfig.model_validate(
                         active_model,
                     )
@@ -1570,8 +1570,8 @@ class ProviderManager:  # pylint: disable=too-many-public-methods
         if active_model:
             self.active_model = active_model
 
-        # Migrate copaw-local to qwenpaw-local for backwards compatibility
-        self._migrate_copaw_config()
+        # Migrate ltclaw_gy_x-local to ltclaw_gy_x-local for backwards compatibility
+        self._migrate_ltclaw_gy_x_config()
 
     def _apply_default_annotations(self):
         """Apply doc-based default annotations for unprobed models.
@@ -1615,14 +1615,14 @@ class ProviderManager:  # pylint: disable=too-many-public-methods
 
         def _clear_local_provider():
             self.update_provider(
-                "qwenpaw-local",
+                "ltclaw_gy_x-local",
                 {
                     "base_url": "",
                     "extra_models": [],
                 },
             )
 
-        local_models = self.get_provider("qwenpaw-local").extra_models
+        local_models = self.get_provider("ltclaw_gy_x-local").extra_models
         model_id = local_models[0].id if local_models else None
         if model_id is None:
             return
@@ -1657,7 +1657,7 @@ class ProviderManager:  # pylint: disable=too-many-public-methods
             return
 
         self.update_provider(
-            "qwenpaw-local",
+            "ltclaw_gy_x-local",
             {
                 "base_url": f"http://127.0.0.1:{setup_result.port}/v1",
                 "extra_models": [setup_result.model_info],

@@ -317,7 +317,7 @@ def _ensure_playwright_async():
         return async_playwright
     except ImportError as exc:
         raise ImportError(
-            "Playwright not installed. Use the same Python that runs QwenPaw (e.g. "
+            "Playwright not installed. Use the same Python that runs LTCLAW-GY.X (e.g. "
             "activate your venv or use 'uv run'): "
             f"'{sys.executable}' -m pip install playwright && "
             f"'{sys.executable}' -m playwright install",
@@ -332,7 +332,7 @@ def _ensure_playwright_sync():
         return sync_playwright
     except ImportError as exc:
         raise ImportError(
-            "Playwright not installed. Use the same Python that runs QwenPaw (e.g. "
+            "Playwright not installed. Use the same Python that runs LTCLAW-GY.X (e.g. "
             "activate your venv or use 'uv run'): "
             f"'{sys.executable}' -m pip install playwright && "
             f"'{sys.executable}' -m playwright install",
@@ -3385,12 +3385,12 @@ async def browser_use(  # pylint: disable=R0911,R0912
             (non-headless). User can see the real browser. Default False.
         cdp_port (int):
             When > 0 with action=start, use the specified CDP port. When 0,
-            QwenPaw chooses a free local port automatically for managed CDP.
+            LTCLAW-GY.X chooses a free local port automatically for managed CDP.
         private_mode (bool):
             When True with action=start, force direct Playwright management
             instead of managed CDP. Use this when the user explicitly does not
             want the browser to be connectable by other local tools/workspaces
-            via CDP. Default False. By default, QwenPaw prefers managed CDP for
+            via CDP. Default False. By default, LTCLAW-GY.X prefers managed CDP for
             both headless and headed starts.
         browser_args (str):
             Extra Chromium launch arguments, e.g. "--incognito" or

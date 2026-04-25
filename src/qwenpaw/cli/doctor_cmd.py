@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""`qwenpaw doctor` — read-only checks.
+"""`ltclaw_gy_x doctor` — read-only checks.
 
-`qwenpaw doctor fix` — conservative repairs with backup.
+`ltclaw_gy_x doctor fix` — conservative repairs with backup.
 """
 from __future__ import annotations
 
@@ -49,7 +49,7 @@ from .doctor_checks import (
     scan_unknown_config_keys,
     security_baseline_notes,
     skill_layout_notes,
-    qwenpaw_local_llm_deep_notes,
+    ltclaw_gy_x_local_llm_deep_notes,
     startup_extra_volume_disk_notes,
     workspace_hygiene_notes,
 )
@@ -152,8 +152,8 @@ def _doctor_server_python_mismatch_note(
     if server_exe and doctor_exe:
         if not _same_python_executable(doctor_exe, server_exe):
             return (
-                "This `qwenpaw doctor` is not using the same Python "
-                "executable as the running `qwenpaw app` — diagnostics and "
+                "This `ltclaw_gy_x doctor` is not using the same Python "
+                "executable as the running `ltclaw_gy_x app` — diagnostics and "
                 "package versions may not match the server. doctor: "
                 f"{doctor_exe!r}; server: {server_exe!r}"
             )
@@ -161,7 +161,7 @@ def _doctor_server_python_mismatch_note(
     if doctor_env.strip() != server_env.strip():
         return (
             "Doctor Python environment label differs from the running "
-            f"`qwenpaw app` (doctor: {doctor_env!r}; server: "
+            f"`ltclaw_gy_x app` (doctor: {doctor_env!r}; server: "
             f"{server_env!r}). "
             "Use the same venv when debugging if possible."
         )
@@ -208,7 +208,7 @@ def _check_web_auth(base: str) -> tuple[bool, str]:
         return (
             False,
             "enabled but no account registered yet.\n"
-            f"        1) Start `qwenpaw app`, open {base}/ in a browser.\n"
+            f"        1) Start `ltclaw_gy_x app`, open {base}/ in a browser.\n"
             "        2) Complete registration (single user) on the login "
             "page.\n"
             "        For automation, set QWENPAW_AUTH_USERNAME and "
@@ -243,7 +243,7 @@ def _classify_console_root_response(resp: httpx.Response) -> tuple[bool, str]:
                     "server is running but the console bundle is not "
                     "installed — build `console/` or set "
                     f"{CONSOLE_STATIC_ENV}, then restart "
-                    "`qwenpaw app`.",
+                    "`ltclaw_gy_x app`.",
                 )
         return False, "HTTP GET / returned JSON instead of the console page"
     return (
@@ -265,7 +265,7 @@ async def _check_active_llm(
     ):
         return (
             False,
-            "no active LLM slot — run `qwenpaw models list` and configure "
+            "no active LLM slot — run `ltclaw_gy_x models list` and configure "
             "an active model",
             [],
         )
@@ -278,8 +278,8 @@ async def _check_active_llm(
 
     deep_notes: list[str] = []
     pid = (slot.provider_id or "").strip()
-    if deep and pid in ("qwenpaw-local", "copaw-local"):
-        deep_notes = qwenpaw_local_llm_deep_notes()
+    if deep and pid in ("ltclaw_gy_x-local", "ltclaw_gy_x-local"):
+        deep_notes = ltclaw_gy_x_local_llm_deep_notes()
 
     if not getattr(provider, "support_connection_check", True):
         return (
@@ -298,8 +298,8 @@ async def _check_active_llm(
         if getattr(provider, "is_local", False) or slot.provider_id in (
             "ollama",
             "lmstudio",
-            "qwenpaw-local",
-            "copaw-local",
+            "ltclaw_gy_x-local",
+            "ltclaw_gy_x-local",
         ):
             hint = active_llm_local_failure_hint(provider, slot.provider_id)
             if hint:
@@ -373,7 +373,7 @@ def run_doctor_checks(
     llm_timeout: float,
     deep: bool,
 ) -> None:
-    """Run read-only ``qwenpaw doctor`` checks (no disk mutations)."""
+    """Run read-only ``ltclaw_gy_x doctor`` checks (no disk mutations)."""
     base = resolve_base_url(ctx, None).rstrip("/")
     failed = False
 
@@ -404,7 +404,7 @@ def run_doctor_checks(
         _doctor_fix_hint(
             "fix the root `config.json` fields shown above. "
             "For workspace repairs after it validates, see "
-            "`qwenpaw doctor fix --dry-run --help` and `--only`.",
+            "`ltclaw_gy_x doctor fix --dry-run --help` and `--only`.",
         )
 
     raw_cfg = load_raw_config_dict()
@@ -422,7 +422,7 @@ def run_doctor_checks(
                 click.echo(f"  - {item}")
             _doctor_fix_hint(
                 "Fix: edit `config.json` manually to remove obsolete keys "
-                "(`qwenpaw doctor` and `doctor fix` do not strip unknown keys "
+                "(`ltclaw_gy_x doctor` and `doctor fix` do not strip unknown keys "
                 "yet).",
             )
 
@@ -445,7 +445,7 @@ def run_doctor_checks(
                 err=True,
             )
             _doctor_fix_hint(
-                "Preview the plan (no writes): `qwenpaw doctor fix --dry-run "
+                "Preview the plan (no writes): `ltclaw_gy_x doctor fix --dry-run "
                 "--only ensure-working-dir,ensure-workspace-dirs`. Apply: run "
                 "the plan without `--dry-run` (add `-y` to skip the "
                 "confirmation prompt).",
@@ -462,7 +462,7 @@ def run_doctor_checks(
                 err=True,
             )
             _doctor_fix_hint(
-                "Preview the plan (no writes): `qwenpaw doctor fix --dry-run "
+                "Preview the plan (no writes): `ltclaw_gy_x doctor fix --dry-run "
                 "--only seed-missing-agent-json,reset-invalid-agent-json`. "
                 "Apply: run the plan without `--dry-run` (risky writes need "
                 "adding `-y` to skip the confirmation prompt).",
@@ -479,7 +479,7 @@ def run_doctor_checks(
                 err=True,
             )
             _doctor_fix_hint(
-                "Preview the plan (no writes): `qwenpaw doctor fix --dry-run "
+                "Preview the plan (no writes): `ltclaw_gy_x doctor fix --dry-run "
                 "--only seed-missing-agent-json,reset-invalid-agent-json`. "
                 "Apply: run the plan without `--dry-run` (risky writes need "
                 "adding `-y` to skip the confirmation prompt).",
@@ -509,9 +509,9 @@ def run_doctor_checks(
         if not ext_nonempty:
             click.echo(
                 click.style("OK", fg="green")
-                + " — no extension notes (register via qwenpaw.doctor entry "
+                + " — no extension notes (register via ltclaw_gy_x.doctor entry "
                 "points or register_doctor_contribution; legacy "
-                "copaw.doctor is still loaded)",
+                "ltclaw_gy_x.doctor is still loaded)",
             )
         else:
             for contrib_id, lines in ext_nonempty:
@@ -613,7 +613,7 @@ def run_doctor_checks(
                 err=True,
             )
             _doctor_fix_hint(
-                "Preview the plan (no writes): `qwenpaw doctor fix --dry-run "
+                "Preview the plan (no writes): `ltclaw_gy_x doctor fix --dry-run "
                 "--only validate-all-jobs-json` (read-only), or the same "
                 "command with `write-empty-jobs-json,normalize-jobs-cron` in "
                 "`--only`. "
@@ -642,7 +642,7 @@ def run_doctor_checks(
             click.style("SKIP", fg="yellow")
             + " — not run because root `config.json` failed validation above: "
             + _skipped_when_cfg_invalid
-            + ". Fix the config file, then re-run `qwenpaw doctor`.",
+            + ". Fix the config file, then re-run `ltclaw_gy_x doctor`.",
         )
         click.echo("\n=== Browser (browser_use / Playwright) ===")
         br_skip = browser_automation_notes(None)
@@ -664,8 +664,8 @@ def run_doctor_checks(
         click.echo(click.style("FAIL", fg="red") + f" — {detail}", err=True)
         _doctor_fix_hint(
             "Fix: set `QWENPAW_WORKING_DIR` (or legacy `COPAW_WORKING_DIR`) "
-            "or run `qwenpaw init`. "
-            "Preview the plan (no writes): `qwenpaw doctor fix --dry-run "
+            "or run `ltclaw_gy_x init`. "
+            "Preview the plan (no writes): `ltclaw_gy_x doctor fix --dry-run "
             "--only ensure-working-dir` if the parent path exists and is "
             "writable. Apply: run the plan `without --dry-run` (add `-y` to "
             "skip the confirmation prompt).",
@@ -691,7 +691,7 @@ def run_doctor_checks(
             )
             _doctor_fix_hint(
                 "Fix: ensure the data directory is writable. "
-                "Preview the plan (no writes): `qwenpaw doctor fix --dry-run "
+                "Preview the plan (no writes): `ltclaw_gy_x doctor fix --dry-run "
                 "--only ensure-working-dir` if the directory is missing and "
                 "the parent allows creating it. Apply: run the plan `without "
                 "--dry-run` (add `-y` to skip the confirmation prompt).",
@@ -735,7 +735,7 @@ def run_doctor_checks(
         _doctor_fix_hint(
             f"Fix: build `console/` or set {CONSOLE_STATIC_ENV}. From a git "
             "checkout — "
-            "Preview the plan (no writes): `qwenpaw doctor fix --dry-run "
+            "Preview the plan (no writes): `ltclaw_gy_x doctor fix --dry-run "
             "--only rebuild-console-npm`. "
             "Apply: run `without --dry-run` and include `-y` (runs npm; "
             "copies dist → bundled console).",
@@ -783,7 +783,7 @@ def run_doctor_checks(
             err=True,
         )
         _doctor_fix_hint(
-            "`qwenpaw models list` / console model settings — not a "
+            "`ltclaw_gy_x models list` / console model settings — not a "
             "filesystem fix.",
         )
     for line in llm_notes:
@@ -842,7 +842,7 @@ def run_doctor_checks(
             err=True,
         )
         click.echo(
-            f"Hint: start the server with `qwenpaw app` (default {base}).",
+            f"Hint: start the server with `ltclaw_gy_x app` (default {base}).",
             err=True,
         )
     else:
@@ -964,7 +964,7 @@ def run_doctor_checks(
     is_flag=True,
     help=(
         "Run extra checks: enabled-channel reachability (non-fatal notes; "
-        "uses --timeout) and, when the active model is qwenpaw-local, "
+        "uses --timeout) and, when the active model is ltclaw_gy_x-local, "
         "llama.cpp install/server status notes."
     ),
 )

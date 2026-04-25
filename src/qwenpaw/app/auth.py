@@ -63,7 +63,7 @@ _PUBLIC_PATHS: frozenset[str] = frozenset(
 _PUBLIC_PREFIXES: tuple[str, ...] = (
     "/assets/",
     "/logo.png",
-    "/qwenpaw-symbol.svg",
+    "/ltclaw_gy_x-symbol.svg",
     "/api/plugins/",  # plugin JS bundles served to unauthenticated login page
 )
 

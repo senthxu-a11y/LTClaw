@@ -39,14 +39,14 @@ logger = logging.getLogger(__name__)
 
 
 def _normalize_working_dir_bound_paths(data: object) -> object:
-    """Normalize legacy ~/.copaw-bound paths to current WORKING_DIR.
+    """Normalize legacy ~/.ltclaw_gy_x-bound paths to current WORKING_DIR.
 
     This keeps QWENPAW_WORKING_DIR effective even if user config files contain
-    older hard-coded paths like "~/.copaw/media" or
-    "/Users/x/.copaw/workspaces/...".
+    older hard-coded paths like "~/.ltclaw_gy_x/media" or
+    "/Users/x/.ltclaw_gy_x/workspaces/...".
     Only rewrites known working-dir-bound keys.
     """
-    legacy_root_tilde = "~/.copaw"
+    legacy_root_tilde = "~/.ltclaw_gy_x"
     legacy_root_abs = str(Path(legacy_root_tilde).expanduser().resolve())
     new_root_abs = str(WORKING_DIR)
 
@@ -342,7 +342,7 @@ def get_system_default_browser() -> Tuple[Optional[str], Optional[str]]:
 
 def get_available_channels() -> Tuple[str, ...]:
     """Return channel keys enabled for this run (built-in + entry point
-    qwenpaw.channels), filtered by QWENPAW_ENABLED_CHANNELS or
+    ltclaw_gy_x.channels), filtered by QWENPAW_ENABLED_CHANNELS or
     QWENPAW_DISABLED_CHANNELS when set.
 
     * QWENPAW_ENABLED_CHANNELS — whitelist (only these channels are active).
@@ -704,11 +704,11 @@ def get_plugins_dir() -> Path:
     return PLUGINS_DIR
 
 
-def is_qwenpaw_running() -> bool:
-    """Check if QwenPaw is currently running by checking API availability.
+def is_ltclaw_gy_x_running() -> bool:
+    """Check if LTCLAW-GY.X is currently running by checking API availability.
 
     Returns:
-        True if QwenPaw is running, False otherwise
+        True if LTCLAW-GY.X is running, False otherwise
     """
     try:
         # Read last API host/port

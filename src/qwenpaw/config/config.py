@@ -334,7 +334,7 @@ class MatrixConfig(BaseChannelConfig):
     history_limit: int = 50
     username: str = ""
     password: str = ""
-    device_name: str = "qwenpaw-worker"
+    device_name: str = "ltclaw_gy_x-worker"
     # matrix-nio sync long-poll timeout (ms); typical 30s
     sync_timeout_ms: int = Field(default=30000, ge=5000, le=300000)
     # When True, prepend HTML pill to formatted_body for outbound mentions.
@@ -355,7 +355,7 @@ class VoiceChannelConfig(BaseChannelConfig):
     tts_voice: str = "en-US-Journey-D"
     stt_provider: str = "deepgram"
     language: str = "en-US"
-    welcome_greeting: str = "Hi! This is QwenPaw. How can I help you?"
+    welcome_greeting: str = "Hi! This is LTCLAW-GY.X. How can I help you?"
 
 
 class SIPChannelConfig(BaseChannelConfig):
@@ -375,7 +375,7 @@ class SIPChannelConfig(BaseChannelConfig):
     tts_voice: str = ""
     stt_provider: str = "aliyun"
     language: str = "zh-CN"
-    welcome_greeting: str = "你好，我是QwenPaw"
+    welcome_greeting: str = "你好，我是LTCLAW-GY.X"
     call_timeout: float = 120.0
     livekit_url: str = ""
     livekit_api_key: str = ""
@@ -401,7 +401,7 @@ class WeixinConfig(BaseChannelConfig):
 
     bot_token:      Bearer token obtained after QR code login.
     bot_token_file: Path to persist/load the bot_token
-                    (default ~/.qwenpaw/weixin_bot_token).
+                    (default ~/.ltclaw_gy_x/weixin_bot_token).
     base_url:       iLink API base URL (leave empty to use default).
     media_dir:      Local directory for downloaded media files.
     """
@@ -1566,7 +1566,7 @@ def build_fallback_agent_profile_config(
     """Build the same profile as when ``agent.json``
     is missing (no disk read/write).
 
-    Used by :func:`load_agent_config` and ``qwenpaw doctor fix``
+    Used by :func:`load_agent_config` and ``ltclaw_gy_x doctor fix``
     so defaults stay in sync.
     """
     if agent_id not in config.agents.profiles:
@@ -1648,9 +1648,9 @@ def load_agent_config(agent_id: str) -> AgentProfileConfig:
     with open(agent_config_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # Normalize legacy ~/.copaw-bound paths to current WORKING_DIR.
+    # Normalize legacy ~/.ltclaw_gy_x-bound paths to current WORKING_DIR.
     # This keeps QWENPAW_WORKING_DIR effective even if existing agent.json
-    # contains older hard-coded paths like "~/.copaw/media".
+    # contains older hard-coded paths like "~/.ltclaw_gy_x/media".
     try:
         from .utils import _normalize_working_dir_bound_paths
 
@@ -1734,7 +1734,7 @@ def migrate_legacy_config_to_multi_agent() -> bool:
     default_agent_config = AgentProfileConfig(
         id="default",
         name="Default Agent",
-        description="Default QwenPaw agent",
+        description="Default LTCLAW-GY.X agent",
         workspace_dir=str(default_workspace),
         channels=config.channels if config.channels else None,
         mcp=config.mcp if config.mcp else None,
@@ -1774,8 +1774,8 @@ def migrate_legacy_config_to_multi_agent() -> bool:
 
     # Migrate existing workspace files from legacy default working dir.
     # When QWENPAW_WORKING_DIR is customized, historical data may still exist
-    # under "~/.copaw".
-    old_workspace = Path("~/.copaw").expanduser().resolve()
+    # under "~/.ltclaw_gy_x".
+    old_workspace = Path("~/.ltclaw_gy_x").expanduser().resolve()
 
     # Move sessions, memory, and other workspace files
     for item_name in ["sessions", "memory", "jobs.json"]:

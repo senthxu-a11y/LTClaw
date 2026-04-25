@@ -75,7 +75,7 @@ async def list_plugins(request: Request):
     If the plugin loader has not yet finished initialising (backend still
     starting up when the frontend first requests the list), the response is
     built by scanning the plugins directory on disk — the same approach used
-    by the CLI ``qwenpaw plugin list`` command.  This prevents a 503 error
+    by the CLI ``ltclaw_gy_x plugin list`` command.  This prevents a 503 error
     that would cause the frontend to miss all plugin JS bundles.
 
     Plugins that declare ``entry.frontend`` in their ``plugin.json``

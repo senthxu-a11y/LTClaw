@@ -54,7 +54,7 @@ def _load_config_tool_guard():
     Returns ``None`` when config cannot be loaded.
     """
     try:
-        from qwenpaw.config import load_config
+        from ltclaw_gy_x.config import load_config
 
         return load_config().security.tool_guard
     except Exception:

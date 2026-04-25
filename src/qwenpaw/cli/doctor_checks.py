@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Read-only diagnostics for `qwenpaw doctor` (no config or disk mutations)."""
+"""Read-only diagnostics for `ltclaw_gy_x doctor` (no config or disk mutations)."""
 from __future__ import annotations
 
 # pylint: disable=too-many-branches,too-many-statements
@@ -57,12 +57,12 @@ from ..utils.system_info import summarize_python_environment
 from ..providers.provider import Provider
 
 
-# Log file opened on app startup (see ``qwenpaw.app._app`` lifespan).
+# Log file opened on app startup (see ``ltclaw_gy_x.app._app`` lifespan).
 APP_LOG_BASENAME = LOG_FILE_BASENAME
 
 # Built-in local llama.cpp provider id; legacy configs may still use
-# copaw-local.
-_QWENPAW_LOCAL_PROVIDER_IDS = frozenset({"qwenpaw-local", "copaw-local"})
+# ltclaw_gy_x-local.
+_QWENPAW_LOCAL_PROVIDER_IDS = frozenset({"ltclaw_gy_x-local", "ltclaw_gy_x-local"})
 
 
 def _resolve_existing_path_anchor(path: Path) -> Path | None:
@@ -99,7 +99,7 @@ def check_app_log_writable() -> tuple[bool, str]:
         return (
             False,
             f"cannot write to existing log file {log_path} "
-            "(required when starting `qwenpaw app`)",
+            "(required when starting `ltclaw_gy_x app`)",
         )
 
     parent = log_path.parent
@@ -107,7 +107,7 @@ def check_app_log_writable() -> tuple[bool, str]:
         return (
             False,
             f"log directory does not exist: {parent} "
-            "(required when starting `qwenpaw app`)",
+            "(required when starting `ltclaw_gy_x app`)",
         )
     if os.access(parent, os.W_OK | os.X_OK):
         return (
@@ -189,7 +189,7 @@ def environment_summary_lines(
     """One line per fact; safe to paste into bug reports.
 
     *server_python_environment* describes the **HTTP API process** (running
-    ``qwenpaw app``), when ``GET /api/doctor/runtime`` returned
+    ``ltclaw_gy_x app``), when ``GET /api/doctor/runtime`` returned
     ``python_environment``. Doctor's own interpreter uses
     ``doctor_python_environment``.
     """
@@ -197,17 +197,17 @@ def environment_summary_lines(
     doctor_env = summarize_python_environment()
     lines = [
         f"python version: {py_ver}",
-        f"qwenpaw version: {__version__}",
+        f"ltclaw_gy_x version: {__version__}",
         f"platform: {platform.system()} {platform.machine()}",
         f"doctor_python_environment: {doctor_env}",
     ]
     if server_python_environment is not None:
         lines.append(
-            f"qwenpaw_python_environment: {server_python_environment}",
+            f"ltclaw_gy_x_python_environment: {server_python_environment}",
         )
     else:
         lines.append(
-            "qwenpaw_python_environment: "
+            "ltclaw_gy_x_python_environment: "
             + (server_python_note or "(unknown)"),
         )
     lines.append(f"working_dir: {WORKING_DIR}")
@@ -310,7 +310,7 @@ def scan_unknown_config_keys(raw: dict[str, Any]) -> list[str]:
 def legacy_single_agent_workspace_note(cfg: Config) -> str | None:
     """Align with ``migrate_legacy_workspace_to_default_agent`` preconditions.
 
-    When this applies, ``qwenpaw app`` may run an automatic migration;
+    When this applies, ``ltclaw_gy_x app`` may run an automatic migration;
     doctor only informs — it does not migrate.
     """
     profiles = cfg.agents.profiles
@@ -325,8 +325,8 @@ def legacy_single_agent_workspace_note(cfg: Config) -> str | None:
     return (
         "Only `default` is listed and workspace "
         f"`{agent_json}` is missing — the same situation "
-        "`qwenpaw app` uses to trigger legacy → multi-agent workspace "
-        "migration. Start `qwenpaw app` once (or see docs / `qwenpaw init`). "
+        "`ltclaw_gy_x app` uses to trigger legacy → multi-agent workspace "
+        "migration. Start `ltclaw_gy_x app` once (or see docs / `ltclaw_gy_x init`). "
         "Doctor does not change config or files."
     )
 
@@ -656,7 +656,7 @@ def workspace_hygiene_notes(cfg: Config) -> list[str]:
     return notes
 
 
-# --- QwenPaw checks (agent.json, channels, MCP, skills, providers) ---
+# --- LTCLAW-GY.X checks (agent.json, channels, MCP, skills, providers) ---
 
 
 def _read_workspace_agent_json(ref: AgentProfileRef) -> dict[str, Any] | None:
@@ -702,7 +702,7 @@ def check_agent_json_profiles(cfg: Config) -> tuple[bool, str]:
 
 
 def check_enabled_agents_load_agent_config(cfg: Config) -> tuple[bool, str]:
-    """Dry-run :func:`~qwenpaw.config.config.load_agent_config` for enabled.
+    """Dry-run :func:`~ltclaw_gy_x.config.config.load_agent_config` for enabled.
 
     Matches ``MultiAgentManager.start_all_configured_agents``. When
     ``agent.json`` is missing, we do **not** call ``load_agent_config`` (that
@@ -721,7 +721,7 @@ def check_enabled_agents_load_agent_config(cfg: Config) -> tuple[bool, str]:
             problems.append(
                 f"{agent_id}: enabled but missing {path} — at startup "
                 "`load_agent_config` would create a fallback agent.json on "
-                "disk; ensure the file exists or use `qwenpaw doctor fix` "
+                "disk; ensure the file exists or use `ltclaw_gy_x doctor fix` "
                 "where applicable.",
             )
             continue
@@ -1024,7 +1024,7 @@ def active_llm_local_failure_hint(provider: Provider, provider_id: str) -> str:
         return (
             f"Hint: {PROJECT_NAME} Local uses llama.cpp. Start the local "
             f"server from the {PROJECT_NAME} console or install the llama.cpp "
-            "binary from there. Run `qwenpaw doctor --deep` to see llama.cpp "
+            "binary from there. Run `ltclaw_gy_x doctor --deep` to see llama.cpp "
             "install and server status."
         )
     if getattr(provider, "is_local", False):
@@ -1038,7 +1038,7 @@ def active_llm_local_failure_hint(provider: Provider, provider_id: str) -> str:
     return ""
 
 
-def qwenpaw_local_llm_deep_notes() -> list[str]:
+def ltclaw_gy_x_local_llm_deep_notes() -> list[str]:
     """Read-only llama.cpp install + server snapshot (``--deep`` / local)."""
     try:
         from ..local_models.manager import LocalModelManager
@@ -1180,7 +1180,7 @@ async def check_enabled_agents_model_connections(
         if deep and pid in _QWENPAW_LOCAL_PROVIDER_IDS:
             # Only add once (same underlying llama.cpp runtime).
             if not any("llama.cpp" in n for n in notes):
-                notes.extend(qwenpaw_local_llm_deep_notes())
+                notes.extend(ltclaw_gy_x_local_llm_deep_notes())
 
         if not getattr(provider, "support_connection_check", True):
             lines.append(
@@ -1224,7 +1224,7 @@ def console_static_diagnostic_notes() -> list[str]:
 
     from ..utils.console_static import (
         CONSOLE_STATIC_ENV,
-        find_qwenpaw_source_repo_root,
+        find_ltclaw_gy_x_source_repo_root,
         resolve_console_static_dir,
     )
 
@@ -1261,12 +1261,12 @@ def console_static_diagnostic_notes() -> list[str]:
         + (npm if npm else "not found (install Node.js or fix PATH)"),
     )
 
-    repo = find_qwenpaw_source_repo_root()
+    repo = find_ltclaw_gy_x_source_repo_root()
     if repo is not None:
         notes.append(
             f"source checkout detected at {repo} — if you changed the web "
             "console under `console/`, you could rebuild the bundled UI with "
-            "`qwenpaw doctor fix -y --only rebuild-console-npm`.",
+            "`ltclaw_gy_x doctor fix -y --only rebuild-console-npm`.",
         )
     else:
         notes.append(

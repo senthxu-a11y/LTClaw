@@ -96,61 +96,61 @@ class LazyGroup(click.Group):
     cls=LazyGroup,
     context_settings={"help_option_names": ["-h", "--help"]},
     lazy_subcommands={
-        "acp": ("qwenpaw.cli.acp_cmd", "acp_cmd", ".acp_cmd"),
-        "app": ("qwenpaw.cli.app_cmd", "app_cmd", ".app_cmd"),
+        "acp": ("ltclaw_gy_x.cli.acp_cmd", "acp_cmd", ".acp_cmd"),
+        "app": ("ltclaw_gy_x.cli.app_cmd", "app_cmd", ".app_cmd"),
         "channels": (
-            "qwenpaw.cli.channels_cmd",
+            "ltclaw_gy_x.cli.channels_cmd",
             "channels_group",
             ".channels_cmd",
         ),
         "channel": (
-            "qwenpaw.cli.channels_cmd",
+            "ltclaw_gy_x.cli.channels_cmd",
             "channels_group",
             ".channels_cmd",
         ),
-        "daemon": ("qwenpaw.cli.daemon_cmd", "daemon_group", ".daemon_cmd"),
-        "chats": ("qwenpaw.cli.chats_cmd", "chats_group", ".chats_cmd"),
-        "chat": ("qwenpaw.cli.chats_cmd", "chats_group", ".chats_cmd"),
-        "clean": ("qwenpaw.cli.clean_cmd", "clean_cmd", ".clean_cmd"),
-        "cron": ("qwenpaw.cli.cron_cmd", "cron_group", ".cron_cmd"),
-        "env": ("qwenpaw.cli.env_cmd", "env_group", ".env_cmd"),
-        "init": ("qwenpaw.cli.init_cmd", "init_cmd", ".init_cmd"),
+        "daemon": ("ltclaw_gy_x.cli.daemon_cmd", "daemon_group", ".daemon_cmd"),
+        "chats": ("ltclaw_gy_x.cli.chats_cmd", "chats_group", ".chats_cmd"),
+        "chat": ("ltclaw_gy_x.cli.chats_cmd", "chats_group", ".chats_cmd"),
+        "clean": ("ltclaw_gy_x.cli.clean_cmd", "clean_cmd", ".clean_cmd"),
+        "cron": ("ltclaw_gy_x.cli.cron_cmd", "cron_group", ".cron_cmd"),
+        "env": ("ltclaw_gy_x.cli.env_cmd", "env_group", ".env_cmd"),
+        "init": ("ltclaw_gy_x.cli.init_cmd", "init_cmd", ".init_cmd"),
         "models": (
-            "qwenpaw.cli.providers_cmd",
+            "ltclaw_gy_x.cli.providers_cmd",
             "models_group",
             ".providers_cmd",
         ),
-        "skills": ("qwenpaw.cli.skills_cmd", "skills_group", ".skills_cmd"),
+        "skills": ("ltclaw_gy_x.cli.skills_cmd", "skills_group", ".skills_cmd"),
         "uninstall": (
-            "qwenpaw.cli.uninstall_cmd",
+            "ltclaw_gy_x.cli.uninstall_cmd",
             "uninstall_cmd",
             ".uninstall_cmd",
         ),
-        "desktop": ("qwenpaw.cli.desktop_cmd", "desktop_cmd", ".desktop_cmd"),
-        "update": ("qwenpaw.cli.update_cmd", "update_cmd", ".update_cmd"),
+        "desktop": ("ltclaw_gy_x.cli.desktop_cmd", "desktop_cmd", ".desktop_cmd"),
+        "update": ("ltclaw_gy_x.cli.update_cmd", "update_cmd", ".update_cmd"),
         "shutdown": (
-            "qwenpaw.cli.shutdown_cmd",
+            "ltclaw_gy_x.cli.shutdown_cmd",
             "shutdown_cmd",
             ".shutdown_cmd",
         ),
-        "auth": ("qwenpaw.cli.auth_cmd", "auth_group", ".auth_cmd"),
-        "agents": ("qwenpaw.cli.agents_cmd", "agents_group", ".agents_cmd"),
-        "agent": ("qwenpaw.cli.agents_cmd", "agents_group", ".agents_cmd"),
+        "auth": ("ltclaw_gy_x.cli.auth_cmd", "auth_group", ".auth_cmd"),
+        "agents": ("ltclaw_gy_x.cli.agents_cmd", "agents_group", ".agents_cmd"),
+        "agent": ("ltclaw_gy_x.cli.agents_cmd", "agents_group", ".agents_cmd"),
         "plugin": (
-            "qwenpaw.cli.plugin_commands",
+            "ltclaw_gy_x.cli.plugin_commands",
             "plugin",
             ".plugin_commands",
         ),
-        "task": ("qwenpaw.cli.task_cmd", "task_cmd", ".task_cmd"),
+        "task": ("ltclaw_gy_x.cli.task_cmd", "task_cmd", ".task_cmd"),
         "mission": (
-            "qwenpaw.cli.mission_cmd",
+            "ltclaw_gy_x.cli.mission_cmd",
             "mission_group",
             ".mission_cmd",
         ),
-        "doctor": ("qwenpaw.cli.doctor_cmd", "doctor_cmd", ".doctor_cmd"),
+        "doctor": ("ltclaw_gy_x.cli.doctor_cmd", "doctor_cmd", ".doctor_cmd"),
     },
 )
-@click.version_option(version=__version__, prog_name="QwenPaw")
+@click.version_option(version=__version__, prog_name="LTCLAW-GY.X")
 @click.option("--host", default=None, help="API Host")
 @click.option(
     "--port",
@@ -160,7 +160,7 @@ class LazyGroup(click.Group):
 )
 @click.pass_context
 def cli(ctx: click.Context, host: str | None, port: int | None) -> None:
-    """QwenPaw CLI."""
+    """LTCLAW-GY.X CLI."""
     # default from last run if not provided
     last = read_last_api()
     if host is None or port is None:

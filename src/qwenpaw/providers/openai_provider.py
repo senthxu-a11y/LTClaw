@@ -13,10 +13,10 @@ from typing import TYPE_CHECKING, Any, List
 from agentscope.model import ChatModelBase
 from openai import APIError
 
-from qwenpaw.providers.provider import ModelInfo, Provider
+from ltclaw_gy_x.providers.provider import ModelInfo, Provider
 
 if TYPE_CHECKING:
-    from qwenpaw.providers.multimodal_prober import ProbeResult
+    from ltclaw_gy_x.providers.multimodal_prober import ProbeResult
 
 logger = logging.getLogger(__name__)
 
@@ -144,7 +144,7 @@ class OpenAIProvider(Provider):
             client_kwargs["default_headers"] = {
                 "x-dashscope-agentapp": json.dumps(
                     {
-                        "agentType": "QwenPaw",
+                        "agentType": "LTCLAW-GY.X",
                         "deployType": "UnKnown",
                         "moduleCode": "model",
                         "agentCode": "UnKnown",
@@ -156,7 +156,7 @@ class OpenAIProvider(Provider):
             client_kwargs["default_headers"] = {
                 "X-DashScope-Cdpl": json.dumps(
                     {
-                        "agentType": "QwenPaw",
+                        "agentType": "LTCLAW-GY.X",
                         "deployType": "UnKnown",
                         "moduleCode": "model",
                         "agentCode": "UnKnown",

@@ -19,7 +19,7 @@ from typing import (
     Optional,
 )
 
-from qwenpaw.config.config import SIPChannelConfig
+from ltclaw_gy_x.config.config import SIPChannelConfig
 
 from ._audioop_compat import audioop  # noqa: F401  # must be first
 from ..base import BaseChannel, OnReplySent, ProcessHandler
@@ -170,7 +170,7 @@ class SIPChannel(BaseChannel):
             "127.0.0.1:5060 (user: any, no auth)",
         )
         logger.info(
-            "[SIP] Dial 'sip:agent@127.0.0.1:5060' to talk with QwenPaw!",
+            "[SIP] Dial 'sip:agent@127.0.0.1:5060' to talk with LTCLAW-GY.X!",
         )
 
     async def _stop_registrar(self) -> None:

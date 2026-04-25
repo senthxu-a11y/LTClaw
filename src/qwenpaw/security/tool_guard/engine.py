@@ -43,7 +43,7 @@ def _guard_enabled() -> bool:
         return env_val.lower() in _TRUE_STRINGS
 
     try:
-        from qwenpaw.config import load_config
+        from ltclaw_gy_x.config import load_config
 
         cfg = load_config()
         return cfg.security.tool_guard.enabled

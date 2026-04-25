@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-MatrixChannel: QwenPaw BaseChannel implementation for Matrix (via matrix-nio).
+MatrixChannel: LTCLAW-GY.X BaseChannel implementation for Matrix (via matrix-nio).
 
 """
 from __future__ import annotations
@@ -53,7 +53,7 @@ from ....app.channels.base import BaseChannel
 from ....app.channels.utils import file_url_to_local_path
 from ....constant import WORKING_DIR
 
-logger = logging.getLogger("qwenpaw.channels.matrix")
+logger = logging.getLogger("ltclaw_gy_x.channels.matrix")
 
 
 CHANNEL_KEY = "matrix"
@@ -65,7 +65,7 @@ TYPING_RENEWAL_INTERVAL_S = 25
 TYPING_MAX_DURATION_S = 120
 DM_CACHE_TTL_MS = 30_000
 
-# Known QwenPaw slash commands — used to decide whether to strip
+# Known LTCLAW-GY.X slash commands — used to decide whether to strip
 # @mention prefix
 _SLASH_COMMANDS = frozenset(
     {
@@ -164,7 +164,7 @@ class MatrixChannelConfig:
         # username/password fallback (rarely used in hiclaw)
         self.username: str = raw.get("username", "")
         self.password: str = raw.get("password", "")
-        self.device_name: str = raw.get("device_name", "qwenpaw-worker")
+        self.device_name: str = raw.get("device_name", "ltclaw_gy_x-worker")
         # E2EE: when True, enable end-to-end encryption via matrix-nio + libolm
         self.encryption: bool = raw.get("encryption", False)
 
@@ -211,7 +211,7 @@ def _normalize_user_id(uid: str) -> str:
 
 
 class MatrixChannel(BaseChannel):
-    """QwenPaw channel that connects to a Matrix homeserver via matrix-nio."""
+    """LTCLAW-GY.X channel that connects to a Matrix homeserver via matrix-nio."""
 
     channel = CHANNEL_KEY  # type: ignore[assignment]
     uses_manager_queue: bool = True
@@ -1582,7 +1582,7 @@ class MatrixChannel(BaseChannel):
                 )
 
         # Build content parts, prepending accumulated history for group rooms.
-        # Skip history prepend for slash commands — QwenPaw's command parser
+        # Skip history prepend for slash commands — LTCLAW-GY.X's command parser
         # requires the message to start with "/" to recognise it.
         content_parts: list[Any] = [
             TextContent(type=ContentType.TEXT, text=command_text),
@@ -1876,13 +1876,13 @@ class MatrixChannel(BaseChannel):
 
     # ------------------------------------------------------------------
     # build_agent_request_from_native (BaseChannel protocol)
-    # native content_parts → QwenPaw Content; same
+    # native content_parts → LTCLAW-GY.X Content; same
     # vision_enabled guard as inbound media for image parts (§11).
     # ------------------------------------------------------------------
 
     # pylint: disable=too-many-return-statements
     def _build_content_part(self, p: dict[str, Any]) -> Any:
-        """Convert a native content-part dict to a QwenPaw Content object."""
+        """Convert a native content-part dict to a LTCLAW-GY.X Content object."""
         t = p.get("type")
         if t == "text" and p.get("text"):
             return TextContent(type=ContentType.TEXT, text=p["text"])
@@ -1930,7 +1930,7 @@ class MatrixChannel(BaseChannel):
             content = [TextContent(type=ContentType.TEXT, text="")]
 
         # Use room_id as the AgentRequest user_id so that all participants
-        # in the same room share one session (QwenPaw keys session state on
+        # in the same room share one session (LTCLAW-GY.X keys session state on
         # both session_id AND user_id).  The real sender is preserved in
         # meta["sender_id"] for reply mentions.
         req = self.build_agent_request_from_user_content(

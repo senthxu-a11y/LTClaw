@@ -59,7 +59,7 @@ export const useAgentStore = create<AgentStore>()(
       getLastChatId: (agentId) => get().lastChatIdByAgent[agentId],
     }),
     {
-      name: "qwenpaw-agent-storage",
+      name: "ltclaw_gy_x-agent-storage",
       storage: {
         getItem: (name) => {
           try {

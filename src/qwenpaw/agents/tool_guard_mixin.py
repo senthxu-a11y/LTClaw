@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Tool-guard mixin for QwenPawAgent.
+"""Tool-guard mixin for LTCLAW-GY.XAgent.
 
 Provides ``_acting`` and ``_reasoning`` overrides that intercept
 sensitive tool calls before execution, implementing the deny /
@@ -32,8 +32,8 @@ from ..constant import (
 )
 
 if TYPE_CHECKING:
-    from qwenpaw.app.approvals.models import PendingApproval
-    from qwenpaw.security.tool_guard.approval import ApprovalDecision
+    from ltclaw_gy_x.app.approvals.models import PendingApproval
+    from ltclaw_gy_x.security.tool_guard.approval import ApprovalDecision
 
 logger = logging.getLogger(__name__)
 
@@ -90,8 +90,8 @@ class ToolGuardMixin:
 
     def _init_tool_guard(self) -> None:
         """Lazy-init tool-guard components (called once)."""
-        from qwenpaw.security.tool_guard.engine import get_guard_engine
-        from qwenpaw.app.approvals import get_approval_service
+        from ltclaw_gy_x.security.tool_guard.engine import get_guard_engine
+        from ltclaw_gy_x.app.approvals import get_approval_service
 
         self._tool_guard_engine = get_guard_engine()
         self._tool_guard_approval_service = get_approval_service()
@@ -252,7 +252,7 @@ class ToolGuardMixin:
         if guard_result is None or not guard_result.findings:
             return None
 
-        from qwenpaw.security.tool_guard.utils import log_findings
+        from ltclaw_gy_x.security.tool_guard.utils import log_findings
 
         log_findings(tool_name, guard_result)
 
@@ -343,7 +343,7 @@ class ToolGuardMixin:
     ) -> dict | None:
         """Auto-deny a tool call without offering approval."""
         from agentscope.message import ToolResultBlock
-        from qwenpaw.security.tool_guard.approval import (
+        from ltclaw_gy_x.security.tool_guard.approval import (
             format_findings_summary,
         )
 
@@ -402,7 +402,7 @@ class ToolGuardMixin:
         /approval approve or /approval deny command. During the wait,
         periodic heartbeat messages are sent to keep SSE connection alive.
         """
-        from qwenpaw.security.tool_guard.approval import ApprovalDecision
+        from ltclaw_gy_x.security.tool_guard.approval import ApprovalDecision
 
         session_id = str(self._request_context.get("session_id") or "")
         user_id = str(self._request_context.get("user_id") or "")
@@ -509,7 +509,7 @@ class ToolGuardMixin:
         Returns:
             ApprovalDecision (APPROVED/DENIED/TIMEOUT)
         """
-        from qwenpaw.security.tool_guard.approval import (
+        from ltclaw_gy_x.security.tool_guard.approval import (
             ApprovalDecision,
         )
 
@@ -604,7 +604,7 @@ class ToolGuardMixin:
             return _tool_guard_t(lang, key)
 
         # Format message text
-        from qwenpaw.security.tool_guard.approval import (
+        from ltclaw_gy_x.security.tool_guard.approval import (
             format_findings_summary,
         )
 
@@ -662,7 +662,7 @@ class ToolGuardMixin:
     ) -> dict | None:
         """Handle user denial of tool execution."""
         from agentscope.message import ToolResultBlock
-        from qwenpaw.security.tool_guard.approval import (
+        from ltclaw_gy_x.security.tool_guard.approval import (
             format_findings_summary,
         )
 
@@ -707,7 +707,7 @@ class ToolGuardMixin:
     ) -> dict | None:
         """Handle approval timeout (auto-deny)."""
         from agentscope.message import ToolResultBlock
-        from qwenpaw.security.tool_guard.approval import (
+        from ltclaw_gy_x.security.tool_guard.approval import (
             format_findings_summary,
         )
 

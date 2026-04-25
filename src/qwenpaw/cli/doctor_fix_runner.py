@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Conservative filesystem repairs for ``qwenpaw doctor fix``.
+"""Conservative filesystem repairs for ``ltclaw_gy_x doctor fix``.
 
 Backup, allowlist, atomic write. Includes ``reconcile-workspace-skills``,
 which calls the same ``reconcile_workspace_manifest`` as the app (CLI-only,
@@ -7,10 +7,10 @@ no server).
 
 ``rebuild-console-npm`` runs ``npm ci && npm run build`` under ``console/``
 in a source checkout and copies ``console/dist`` into
-``src/qwenpaw/console/`` (needs network for npm).
+``src/ltclaw_gy_x/console/`` (needs network for npm).
 
 ``validate-all-jobs-json`` reuses
-:func:`~qwenpaw.cli.doctor_checks.check_cron_jobs_files` (read-only); exits
+:func:`~ltclaw_gy_x.cli.doctor_checks.check_cron_jobs_files` (read-only); exits
 non-zero on FAIL (for CI).
 
 ``doctor fix --non-interactive`` allows only :data:`NONINTERACTIVE_FIX_IDS`
@@ -49,7 +49,7 @@ from ..config.utils import (
     strict_validate_config_file,
 )
 from ..constant import JOBS_FILE, WORKING_DIR
-from ..utils.console_static import find_qwenpaw_source_repo_root
+from ..utils.console_static import find_ltclaw_gy_x_source_repo_root
 from .doctor_checks import check_cron_jobs_files
 
 SAFE_FIX_IDS = frozenset({"ensure-working-dir", "ensure-workspace-dirs"})
@@ -227,7 +227,7 @@ def _write_meta(
     cfg = load_config()
     ch, cp = _effective_cli_api_host_port(cli_api_host, cli_api_port)
     meta = {
-        "qwenpaw_version": __version__,
+        "ltclaw_gy_x_version": __version__,
         "utc": datetime.now(timezone.utc).isoformat(),
         "argv": argv,
         "fix_ids": fix_ids,
@@ -292,7 +292,7 @@ def _plan_fixes(
                 raise ValueError(
                     f"fix {fid!r} requires --yes (-y) to apply "
                     "(may modify files or run external tools such as npm). "
-                    "Use `qwenpaw doctor fix --dry-run --only ...` to preview "
+                    "Use `ltclaw_gy_x doctor fix --dry-run --only ...` to preview "
                     "the plan without -y.",
                 )
 
@@ -314,7 +314,7 @@ def _plan_fixes(
     ):
         raise ValueError(
             f"working directory {wd} does not exist; include "
-            "ensure-working-dir in --only or run `qwenpaw doctor fix` without "
+            "ensure-working-dir in --only or run `ltclaw_gy_x doctor fix` without "
             "--only (safe fixes include it when needed).",
         )
 
@@ -595,19 +595,19 @@ def _plan_fixes(
             )
 
     if "rebuild-console-npm" in fix_ids:
-        repo = find_qwenpaw_source_repo_root()
+        repo = find_ltclaw_gy_x_source_repo_root()
         if repo is None:
             skip_msgs.append(
-                "rebuild-console-npm: only in a QwenPaw source checkout "
+                "rebuild-console-npm: only in a LTCLAW-GY.X source checkout "
                 "(./console/package.json + ./console/package-lock.json + "
-                "./src/qwenpaw/)",
+                "./src/ltclaw_gy_x/)",
             )
         elif not shutil.which("npm"):
             skip_msgs.append("rebuild-console-npm: npm not found on PATH")
         else:
             console = repo / "console"
             dist = console / "dist"
-            dst = repo / "src" / "qwenpaw" / "console"
+            dst = repo / "src" / "ltclaw_gy_x" / "console"
             desc = (
                 f"npm ci + npm run build in {console}, then copy {dist} -> "
                 f"{dst} (bundles web UI for editable installs)"
@@ -632,7 +632,7 @@ def _plan_fixes(
                     and target.exists()
                     and any(target.iterdir())
                 ):
-                    bkp_root = r / ".qwenpaw-doctor-fix-backups"
+                    bkp_root = r / ".ltclaw_gy_x-doctor-fix-backups"
                     sid = _utc_session_id()
                     bkp = bkp_root / sid
                     prev = bkp / "previous-console-bundle"
@@ -642,7 +642,7 @@ def _plan_fixes(
                     shutil.copytree(target, prev)
                     bkp.mkdir(parents=True, exist_ok=True)
                     meta = {
-                        "qwenpaw_version": __version__,
+                        "ltclaw_gy_x_version": __version__,
                         "previous_bundle": str(prev),
                     }
                     (bkp / "meta.json").write_text(

@@ -1000,7 +1000,7 @@ export default function ChatPage() {
       welcome: {
         ...i18nConfig.welcome,
         nick: "LTCLAW-GY.X",
-        avatar: "/qwenpaw.png",
+        avatar: "/ltclaw_gy_x.png",
       },
       sender: {
         ...(i18nConfig as any)?.sender,

@@ -16,8 +16,8 @@ from typing import Any, Iterator, Optional
 import httpx
 from pydantic import BaseModel
 
-from qwenpaw.constant import DEFAULT_LOCAL_PROVIDER_DIR
-from qwenpaw.providers.provider import ModelInfo
+from ltclaw_gy_x.constant import DEFAULT_LOCAL_PROVIDER_DIR
+from ltclaw_gy_x.providers.provider import ModelInfo
 
 from .download_manager import (
     DownloadProgressUpdate,
@@ -50,7 +50,7 @@ class LlamaCppServerSetupResult(BaseModel):
 
 class LlamaCppBackend:
     """
-    QwenPaw local model backend for managing llama.cpp server installation
+    LTCLAW-GY.X local model backend for managing llama.cpp server installation
     and setup.
     """
 
@@ -190,8 +190,8 @@ class LlamaCppBackend:
         filename = self._build_filename(tag)
         download_url = f"{base_url}/{tag}/{filename}"
         spec = ProcessDownloadTaskSpec(
-            process_name=f"qwenpaw-llamacpp-download-{staging_dir.name}",
-            command=["qwenpaw-llamacpp-download", download_url],
+            process_name=f"ltclaw_gy_x-llamacpp-download-{staging_dir.name}",
+            command=["ltclaw_gy_x-llamacpp-download", download_url],
             task=ProcessDownloadTask(
                 target=type(self)._download_worker,
                 payload={

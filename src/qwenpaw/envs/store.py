@@ -17,8 +17,8 @@ import shutil
 from pathlib import Path
 from typing import Optional
 
-from qwenpaw.constant import SECRET_DIR, WORKING_DIR
-from qwenpaw.security.secret_store import decrypt, encrypt, is_encrypted
+from ltclaw_gy_x.constant import SECRET_DIR, WORKING_DIR
+from ltclaw_gy_x.security.secret_store import decrypt, encrypt, is_encrypted
 
 logger = logging.getLogger(__name__)
 

@@ -88,17 +88,17 @@ class EnvVarLoader:
 
 # WORKING_DIR priority:
 # 1. QWENPAW_WORKING_DIR / COPAW_WORKING_DIR env var is set → use it
-# 2. ~/.copaw exists (legacy installation) → use it as-is
-# 3. Default → ~/.qwenpaw
+# 2. ~/.ltclaw_gy_x exists (legacy installation) → use it as-is
+# 3. Default → ~/.ltclaw_gy_x
 _explicit_working_dir = _get_env("QWENPAW_WORKING_DIR")
 if _explicit_working_dir:
     WORKING_DIR = Path(_explicit_working_dir).expanduser().resolve()
 else:
-    _legacy_copaw_dir = Path("~/.copaw").expanduser()
-    if _legacy_copaw_dir.exists():
-        WORKING_DIR = _legacy_copaw_dir.resolve()
+    _legacy_ltclaw_gy_x_dir = Path("~/.ltclaw_gy_x").expanduser()
+    if _legacy_ltclaw_gy_x_dir.exists():
+        WORKING_DIR = _legacy_ltclaw_gy_x_dir.resolve()
     else:
-        WORKING_DIR = Path("~/.qwenpaw").expanduser().resolve()
+        WORKING_DIR = Path("~/.ltclaw_gy_x").expanduser().resolve()
 SECRET_DIR = (
     Path(
         EnvVarLoader.get_str(
@@ -110,7 +110,7 @@ SECRET_DIR = (
     .resolve()
 )
 
-PROJECT_NAME = "QwenPaw"
+PROJECT_NAME = "LTCLAW-GY.X"
 
 # Default media directory for channels (cross-platform)
 DEFAULT_MEDIA_DIR = WORKING_DIR / "media"
@@ -123,7 +123,7 @@ JOBS_FILE = EnvVarLoader.get_str("QWENPAW_JOBS_FILE", "jobs.json")
 CHATS_FILE = EnvVarLoader.get_str("QWENPAW_CHATS_FILE", "chats.json")
 
 
-# Builtin Q&A helper profile.  agent_id keeps "QwenPaw" prefix for existing
+# Builtin Q&A helper profile.  agent_id keeps "LTCLAW-GY.X" prefix for existing
 # workspaces and agent.json; do not rename.
 def _discover_agent_languages() -> frozenset[str]:
     md_root = Path(__file__).resolve().parent / "agents" / "md_files"
@@ -142,7 +142,7 @@ def _discover_agent_languages() -> frozenset[str]:
 
 SUPPORTED_AGENT_LANGUAGES: frozenset[str] = _discover_agent_languages()
 
-BUILTIN_QA_AGENT_ID = "QwenPaw_QA_Agent_0.2"
+BUILTIN_QA_AGENT_ID = "LTCLAW-GY.X_QA_Agent_0.2"
 BUILTIN_QA_AGENT_NAME = "QA Agent"
 # Default skills when the builtin QA workspace is first created only.
 BUILTIN_QA_AGENT_SKILL_NAMES: tuple[str, ...] = (
@@ -150,10 +150,10 @@ BUILTIN_QA_AGENT_SKILL_NAMES: tuple[str, ...] = (
     "QA_source_index",
 )
 
-# CoPaw-era builtin QA; may remain in config.json — disabled when the current
+# LTCLAW-GY.X-era builtin QA; may remain in config.json — disabled when the current
 # ``BUILTIN_QA_AGENT_ID`` profile is first created (see ``migration``), not
 # every startup, so users can re-enable this id if they want.
-LEGACY_QA_AGENT_ID = "CoPaw_QA_Agent_0.1beta1"
+LEGACY_QA_AGENT_ID = "LTCLAW-GY.X_QA_Agent_0.1beta1"
 
 TOKEN_USAGE_FILE = EnvVarLoader.get_str(
     "QWENPAW_TOKEN_USAGE_FILE",
@@ -213,11 +213,11 @@ BACKUP_DIR = (
     .resolve()
 )
 
-# Custom channel modules (installed via `qwenpaw channels install`); manager
+# Custom channel modules (installed via `ltclaw_gy_x channels install`); manager
 # loads BaseChannel subclasses from here.
 CUSTOM_CHANNELS_DIR = WORKING_DIR / "custom_channels"
 
-# Plugin directory (installed via `qwenpaw plugin install`)
+# Plugin directory (installed via `ltclaw_gy_x plugin install`)
 PLUGINS_DIR = WORKING_DIR / "plugins"
 
 # Local models directory

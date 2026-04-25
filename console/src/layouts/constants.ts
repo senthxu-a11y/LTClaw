@@ -1,8 +1,9 @@
 // ── URLs ──────────────────────────────────────────────────────────────────
+// LTCLAW-GY.X - Local deployment, external URLs disabled for data security
 
-export const PYPI_URL = "https://pypi.org/pypi/qwenpaw/json";
+export const PYPI_URL = "https://pypi.org/pypi/ltclaw-gy-x/json";
 
-export const GITHUB_URL = "https://github.com/agentscope-ai/LTCLAW-GY.X" as const;
+export const GITHUB_URL = "https://github.com/senthxu-a11y/LTCLAW" as const;
 
 // ── Timing ────────────────────────────────────────────────────────────────
 
@@ -69,13 +70,13 @@ export const getWebsiteLang = (lang: string): string =>
   lang.startsWith("zh") ? "zh" : "en";
 
 export const getDocsUrl = (lang: string): string =>
-  `https://qwenpaw.agentscope.io/docs/intro?lang=${getWebsiteLang(lang)}`;
+  `#`;  // Disabled - LTCLAW-GY.X local deployment
 
 export const getFaqUrl = (lang: string): string =>
-  `https://qwenpaw.agentscope.io/docs/faq?lang=${getWebsiteLang(lang)}`;
+  `#`;  // Disabled - LTCLAW-GY.X local deployment
 
 export const getReleaseNotesUrl = (lang: string): string =>
-  `https://qwenpaw.agentscope.io/release-notes?lang=${getWebsiteLang(lang)}`;
+  `#`;  // Disabled - LTCLAW-GY.X local deployment
 
 // ── Version helpers ────────────────────────────────────────────────────────
 
@@ -138,7 +139,7 @@ export const UPDATE_MD: Record<string, string> = {
 2. 如果你是通过 pip 安装，在终端中执行以下命令升级：
 
 \`\`\`
-qwenpaw update
+ltclaw_gy_x update
 \`\`\`
 
 3. 如果你是从源码安装，进入项目目录并拉取最新代码后重新安装：
@@ -147,19 +148,19 @@ qwenpaw update
 cd LTCLAW-GY.X
 git pull origin main
 cd console && npm ci && npm run build
-cd .. && mkdir -p src/qwenpaw/console
-cp -R console/dist/. src/qwenpaw/console/
+cd .. && mkdir -p src/ltclaw_gy_x/console
+cp -R console/dist/. src/ltclaw_gy_x/console/
 pip install -e .
 \`\`\`
 
 4. 如果你使用的是 Docker，拉取最新镜像并重启容器：
 
 \`\`\`
-docker pull agentscope/qwenpaw:latest
-docker run -p 127.0.0.1:8088:8088 -v qwenpaw-data:/app/working agentscope/qwenpaw:latest
+docker pull agentscope/ltclaw_gy_x:latest
+docker run -p 127.0.0.1:8088:8088 -v ltclaw_gy_x-data:/app/working agentscope/ltclaw_gy_x:latest
 \`\`\`
 
-升级后重启服务 qwenpaw app。`,
+升级后重启服务 ltclaw_gy_x app。`,
 
   ru: `### Как обновить LTCLAW-GY.X
 
@@ -170,7 +171,7 @@ docker run -p 127.0.0.1:8088:8088 -v qwenpaw-data:/app/working agentscope/qwenpa
 2. Если устанавливали через pip, выполните:
 
 \`\`\`
-qwenpaw update
+ltclaw_gy_x update
 \`\`\`
 
 3. Если устанавливали из исходников, получите последние изменения и переустановите:
@@ -179,19 +180,19 @@ qwenpaw update
 cd LTCLAW-GY.X
 git pull origin main
 cd console && npm ci && npm run build
-cd .. && mkdir -p src/qwenpaw/console
-cp -R console/dist/. src/qwenpaw/console/
+cd .. && mkdir -p src/ltclaw_gy_x/console
+cp -R console/dist/. src/ltclaw_gy_x/console/
 pip install -e .
 \`\`\`
 
 4. Если используете Docker, загрузите новый образ и перезапустите контейнер:
 
 \`\`\`
-docker pull agentscope/qwenpaw:latest
-docker run -p 127.0.0.1:8088:8088 -v qwenpaw-data:/app/working agentscope/qwenpaw:latest
+docker pull agentscope/ltclaw_gy_x:latest
+docker run -p 127.0.0.1:8088:8088 -v ltclaw_gy_x-data:/app/working agentscope/ltclaw_gy_x:latest
 \`\`\`
 
-After upgrading, restart the service with \`qwenpaw app\`.`,
+After upgrading, restart the service with \`ltclaw_gy_x app\`.`,
 
   en: `### How to update LTCLAW-GY.X
 
@@ -202,7 +203,7 @@ To update LTCLAW-GY.X, use the method matching your installation type:
 2. If installed via pip, run:
 
 \`\`\`
-qwenpaw update
+ltclaw_gy_x update
 \`\`\`
 
 3. If installed from source, pull the latest code and reinstall:
@@ -211,17 +212,17 @@ qwenpaw update
 cd LTCLAW-GY.X
 git pull origin main
 cd console && npm ci && npm run build
-cd .. && mkdir -p src/qwenpaw/console
-cp -R console/dist/. src/qwenpaw/console/
+cd .. && mkdir -p src/ltclaw_gy_x/console
+cp -R console/dist/. src/ltclaw_gy_x/console/
 pip install -e .
 \`\`\`
 
 4. If using Docker, pull the latest image and restart the container:
 
 \`\`\`
-docker pull agentscope/qwenpaw:latest
-docker run -p 127.0.0.1:8088:8088 -v qwenpaw-data:/app/working agentscope/qwenpaw:latest
+docker pull agentscope/ltclaw_gy_x:latest
+docker run -p 127.0.0.1:8088:8088 -v ltclaw_gy_x-data:/app/working agentscope/ltclaw_gy_x:latest
 \`\`\`
 
-After upgrading, restart the service with \`qwenpaw app\`.`,
+After upgrading, restart the service with \`ltclaw_gy_x app\`.`,
 };

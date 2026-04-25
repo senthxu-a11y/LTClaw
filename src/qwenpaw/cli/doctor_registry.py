@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-"""Extensible hooks for `qwenpaw doctor`
+"""Extensible hooks for `ltclaw_gy_x doctor`
 (entry points + programmatic registration).
 
-Plugins can expose a setuptools entry point in group ``qwenpaw.doctor``::
+Plugins can expose a setuptools entry point in group ``ltclaw_gy_x.doctor``::
 
-    [project.entry-points."qwenpaw.doctor"]
+    [project.entry-points."ltclaw_gy_x.doctor"]
     my_pkg = "my_pkg.doctor:doctor_notes"
 
-The group ``copaw.doctor`` is still discovered when present (legacy plugins).
+The group ``ltclaw_gy_x.doctor`` is still discovered when present (legacy plugins).
 
 The callable must accept :class:`DoctorRunContext` and return a list of
 informational strings (empty if nothing to report).
@@ -67,7 +67,7 @@ def _entry_points_for_group(group: str):
 def _load_entry_point_functions() -> list[tuple[str, DoctorNotesFn]]:
     out: list[tuple[str, DoctorNotesFn]] = []
     seen: set[str] = set()
-    for group in ("qwenpaw.doctor", "copaw.doctor"):
+    for group in ("ltclaw_gy_x.doctor", "ltclaw_gy_x.doctor"):
         for ep in _entry_points_for_group(group):
             if ep.name in seen:
                 continue

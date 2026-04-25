@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""QwenPaw ACP Agent server.
+"""LTCLAW-GY.X ACP Agent server.
 
-Exposes QwenPaw as an ACP-compliant agent that external clients
+Exposes LTCLAW-GY.X as an ACP-compliant agent that external clients
 (Zed, OpenCode, etc.) can connect to via stdio JSON-RPC.
 
 Uses the full ``Workspace`` lifecycle so the ACP agent has exactly
@@ -141,7 +141,7 @@ def _msg_to_updates(  # pylint: disable=too-many-branches
     msg: Any,
     tracker: _StreamTracker | None = None,
 ) -> list[Any]:
-    """Convert a QwenPaw Msg into ACP session update(s).
+    """Convert a LTCLAW-GY.X Msg into ACP session update(s).
 
     When *tracker* is provided, text and thinking content blocks are
     emitted as **incremental** deltas rather than cumulative snapshots,
@@ -324,7 +324,7 @@ def _get_msg_text(msg: Any) -> str:
     return ""
 
 
-class QwenPawACPAgent(Agent):
+class LTCLAW-GY.XACPAgent(Agent):
     """ACP Agent backed by a full ``Workspace``.
 
     Instead of creating a bare ``AgentRunner``, this class boots a
@@ -414,7 +414,7 @@ class QwenPawACPAgent(Agent):
         self._workspace = workspace
         self._workspace_ready = True
         logger.info(
-            "QwenPaw ACP Agent workspace started: agent_id=%s workspace=%s",
+            "LTCLAW-GY.X ACP Agent workspace started: agent_id=%s workspace=%s",
             agent_id,
             workspace_dir,
         )
@@ -459,8 +459,8 @@ class QwenPawACPAgent(Agent):
                 ),
             ),
             agent_info=Implementation(
-                name="qwenpaw",
-                title="QwenPaw",
+                name="ltclaw_gy_x",
+                title="LTCLAW-GY.X",
                 version=__version__,
             ),
         )
@@ -887,12 +887,12 @@ class QwenPawACPAgent(Agent):
         save_agent_config(agent_id, agent_config)
 
 
-async def run_qwenpaw_agent(
+async def run_ltclaw_gy_x_agent(
     agent_id: str | None = None,
     workspace_dir: Path | None = None,
 ) -> None:
-    """Entry point: run QwenPaw as an ACP agent over stdio."""
-    agent = QwenPawACPAgent(
+    """Entry point: run LTCLAW-GY.X as an ACP agent over stdio."""
+    agent = LTCLAW-GY.XACPAgent(
         agent_id=agent_id,
         workspace_dir=workspace_dir,
     )

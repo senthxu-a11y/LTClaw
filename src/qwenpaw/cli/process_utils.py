@@ -164,31 +164,31 @@ def _process_table() -> list[tuple[int, str]]:
     return rows
 
 
-def _matches_qwenpaw_cli_command(command: str, *subcommands: str) -> bool:
-    """Return whether command line looks like a QwenPaw CLI invocation."""
+def _matches_ltclaw_gy_x_cli_command(command: str, *subcommands: str) -> bool:
+    """Return whether command line looks like a LTCLAW-GY.X CLI invocation."""
     lowered = f" {command.lower()}"
     return any(
         pattern in lowered
         for subcommand in subcommands
         for pattern in (
-            f" -m qwenpaw {subcommand}",
-            f" qwenpaw {subcommand}",
+            f" -m ltclaw_gy_x {subcommand}",
+            f" ltclaw_gy_x {subcommand}",
             f"__main__.py {subcommand}",
-            f'qwenpaw.exe" {subcommand}',
-            f"qwenpaw.exe {subcommand}",
+            f'ltclaw_gy_x.exe" {subcommand}',
+            f"ltclaw_gy_x.exe {subcommand}",
         )
     )
 
 
-def _is_qwenpaw_service_command(command: str) -> bool:
-    """Return whether the command line looks like a local QwenPaw app."""
-    return _matches_qwenpaw_cli_command(command, "app")
+def _is_ltclaw_gy_x_service_command(command: str) -> bool:
+    """Return whether the command line looks like a local LTCLAW-GY.X app."""
+    return _matches_ltclaw_gy_x_cli_command(command, "app")
 
 
-def _is_qwenpaw_wrapper_process(name: str, command: str) -> bool:
-    """Return whether the process looks like a QwenPaw CLI wrapper."""
+def _is_ltclaw_gy_x_wrapper_process(name: str, command: str) -> bool:
+    """Return whether the process looks like a LTCLAW-GY.X CLI wrapper."""
     lowered_name = name.lower().removesuffix(".exe")
-    return lowered_name == "qwenpaw" or _matches_qwenpaw_cli_command(
+    return lowered_name == "ltclaw_gy_x" or _matches_ltclaw_gy_x_cli_command(
         command,
         "app",
         "desktop",
@@ -210,7 +210,7 @@ def _base_url(host: str, port: int) -> str:
 
 
 def _candidate_hosts(host: str | None) -> list[str]:
-    """Return host variants that can reach a local QwenPaw service."""
+    """Return host variants that can reach a local LTCLAW-GY.X service."""
     if not host:
         return []
 

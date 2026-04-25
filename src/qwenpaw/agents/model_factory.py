@@ -5,7 +5,7 @@ This module provides a unified factory for creating chat model instances
 and their corresponding formatters based on configuration.
 
 Example:
-    >>> from qwenpaw.agents.model_factory import create_model_and_formatter
+    >>> from ltclaw_gy_x.agents.model_factory import create_model_and_formatter
     >>> model, formatter = create_model_and_formatter()
 """
 
@@ -112,7 +112,7 @@ def _normalize_messages_for_formatter(
         issubclass(base_formatter_class, GeminiChatFormatter)
     )
     supports_multimodal = _supports_multimodal_for_current_model()
-    if getattr(formatter_instance, "_qwenpaw_force_strip_media", False):
+    if getattr(formatter_instance, "_ltclaw_gy_x_force_strip_media", False):
         supports_multimodal = False
 
     if is_anthropic_formatter:
@@ -1023,7 +1023,7 @@ def create_model_and_formatter(
             raise ProviderError(
                 message=(
                     "No active model configured. "
-                    "Please configure a model using 'qwenpaw models config' "
+                    "Please configure a model using 'ltclaw_gy_x models config' "
                     "or set an agent-specific model."
                 ),
             )

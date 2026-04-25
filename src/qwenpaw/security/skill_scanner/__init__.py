@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Skill security scanner for QwenPaw.
+Skill security scanner for LTCLAW-GY.X.
 
 Scans skills for security threats before they are activated or installed.
 
@@ -20,7 +20,7 @@ orchestrator.
 
 Quick start::
 
-    from qwenpaw.security.skill_scanner import SkillScanner
+    from ltclaw_gy_x.security.skill_scanner import SkillScanner
 
     scanner = SkillScanner()
     result = scanner.scan_skill("/path/to/skill_directory")
@@ -173,8 +173,8 @@ def is_skill_whitelisted(
 # ---------------------------------------------------------------------------
 
 _BLOCKED_HISTORY_FILE = "skill_scanner_blocked.json"
-_WORKING_DIR_CURRENT_NAME = ".qwenpaw"
-_WORKING_DIR_LEGACY_NAME = ".copaw"
+_WORKING_DIR_CURRENT_NAME = ".ltclaw_gy_x"
+_WORKING_DIR_LEGACY_NAME = ".ltclaw_gy_x"
 _history_lock = threading.Lock()
 
 

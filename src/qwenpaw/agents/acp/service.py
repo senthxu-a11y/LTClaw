@@ -282,7 +282,7 @@ class ACPService:
                 protocol_version=PROTOCOL_VERSION,
                 capabilities=ClientCapabilities(),
                 client_info=Implementation(
-                    name="qwenpaw-acp-service",
+                    name="ltclaw_gy_x-acp-service",
                     version="0.1.0",
                 ),
             )

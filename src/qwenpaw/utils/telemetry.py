@@ -15,7 +15,7 @@ from typing import Any, Callable
 logger = logging.getLogger(__name__)
 
 TELEMETRY_ENDPOINT = (
-    "https://qwenpawelemetry-sukzkbfzhc.ap-southeast-1.fcapp.run"
+    "http://localhost/disabled"
 )
 TELEMETRY_MARKER_FILE = ".telemetry_collected"
 
@@ -29,7 +29,7 @@ def _safe_get(func: Callable[[], str], default: str = "unknown") -> str:
 
 
 def _detect_install_method() -> str:
-    """Detect how QwenPaw was installed based on environment signals."""
+    """Detect how LTCLAW-GY.X was installed based on environment signals."""
     from ..constant import EnvVarLoader
 
     if EnvVarLoader.get_bool("QWENPAW_RUNNING_IN_CONTAINER"):
@@ -44,19 +44,19 @@ def get_system_info() -> dict[str, Any]:
 
     Returns anonymized system information including:
     - install_id: Random UUID (not tied to user)
-    - qwenpaw_version: QwenPaw version string
-    - install_method: How QwenPaw was installed (docker/desktop/pip)
+    - ltclaw_gy_x_version: LTCLAW-GY.X version string
+    - install_method: How LTCLAW-GY.X was installed (docker/desktop/pip)
     - os: Operating system (Windows/Darwin/Linux)
     - os_version: OS version string
-    - python_version: Python version running qwenpaw (major.minor)
+    - python_version: Python version running ltclaw_gy_x (major.minor)
     - architecture: CPU architecture (x86_64/arm64/etc)
     - has_gpu: GPU availability detection
     """
-    from ..__version__ import __version__ as qwenpaw_ver
+    from ..__version__ import __version__ as ltclaw_gy_x_ver
 
     info = {
         "install_id": str(uuid.uuid4()),
-        "qwenpaw_version": _safe_get(lambda: qwenpaw_ver, "unknown"),
+        "ltclaw_gy_x_version": _safe_get(lambda: ltclaw_gy_x_ver, "unknown"),
         "install_method": _safe_get(_detect_install_method, "unknown"),
         "os": _safe_get(platform.system, "unknown"),
         "os_version": _safe_get(platform.release, "unknown"),
@@ -156,31 +156,18 @@ def _detect_gpu() -> bool | str:
 
 def _upload_telemetry_sync(data: dict[str, Any]) -> bool:
     """Upload telemetry data (synchronous).
-
-    Args:
-        data: Telemetry data to upload
-
-    Returns:
-        True if upload succeeded, False otherwise
+    DISABLED - LTCLAW-GY.X telemetry collection is disabled for data security.
     """
-    try:
-        import httpx
-
-        with httpx.Client(timeout=2.0) as client:
-            response = client.post(TELEMETRY_ENDPOINT, json=data)
-            return response.status_code in (200, 201, 204)
-    except Exception as e:
-        # Silent failure - don't break installation
-        logger.debug("Telemetry upload failed: %s", e)
-        return False
+    # Telemetry disabled - local deployment only
+    return False
 
 
 def _get_current_version() -> str:
-    """Get the current QwenPaw version string."""
+    """Get the current LTCLAW-GY.X version string."""
     try:
-        from ..__version__ import __version__ as qwenpaw_ver
+        from ..__version__ import __version__ as ltclaw_gy_x_ver
 
-        return qwenpaw_ver
+        return ltclaw_gy_x_ver
     except Exception:
         return "unknown"
 
@@ -188,11 +175,11 @@ def _get_current_version() -> str:
 def has_telemetry_been_collected(working_dir: Path) -> bool:
     """Check if telemetry has already been collected for the current version.
 
-    Re-triggers collection when QwenPaw is upgraded (or downgraded) to a
+    Re-triggers collection when LTCLAW-GY.X is upgraded (or downgraded) to a
     version that hasn't been collected before.
 
     Args:
-        working_dir: Path to QwenPaw working directory
+        working_dir: Path to LTCLAW-GY.X working directory
 
     Returns:
         True if already collected for this version, False otherwise
@@ -207,8 +194,8 @@ def has_telemetry_been_collected(working_dir: Path) -> bool:
         collected_versions = marker_data.get("collected_versions", [])
         if collected_versions:
             return current in collected_versions
-        # v1.1 compat: single qwenpaw_version field
-        return marker_data.get("qwenpaw_version", "") == current
+        # v1.1 compat: single ltclaw_gy_x_version field
+        return marker_data.get("ltclaw_gy_x_version", "") == current
     except Exception:
         return False
 
@@ -219,7 +206,7 @@ def is_telemetry_opted_out(working_dir: Path) -> bool:
     Once opted out, telemetry is never collected again regardless of version.
 
     Args:
-        working_dir: Path to QwenPaw working directory
+        working_dir: Path to LTCLAW-GY.X working directory
 
     Returns:
         True if user has opted out, False otherwise
@@ -245,7 +232,7 @@ def mark_telemetry_collected(
     between previously-collected versions won't re-trigger the prompt.
 
     Args:
-        working_dir: Path to QwenPaw working directory
+        working_dir: Path to LTCLAW-GY.X working directory
         opted_out: If True, marks the user as permanently opted out
     """
     marker_file = working_dir / TELEMETRY_MARKER_FILE
@@ -262,7 +249,7 @@ def mark_telemetry_collected(
                 prev_opted_out = old_data.get("opted_out", False) is True
                 # Migrate from v1.1 single-version format
                 if not collected_versions:
-                    old_ver = old_data.get("qwenpaw_version", "")
+                    old_ver = old_data.get("ltclaw_gy_x_version", "")
                     if old_ver:
                         collected_versions = [old_ver]
             except Exception:
@@ -273,7 +260,7 @@ def mark_telemetry_collected(
 
         marker_data = {
             "collected_at": time.time(),
-            "qwenpaw_version": current,
+            "ltclaw_gy_x_version": current,
             "collected_versions": collected_versions,
             "opted_out": opted_out or prev_opted_out,
             "version": "1.3",
@@ -285,20 +272,8 @@ def mark_telemetry_collected(
 
 def collect_and_upload_telemetry(working_dir: Path) -> bool:
     """Collect system info and upload telemetry.
-
-    Args:
-        working_dir: Path to QwenPaw working directory
-
-    Returns:
-        True if upload succeeded, False otherwise
+    DISABLED - LTCLAW-GY.X telemetry collection is disabled.
     """
-    # Collect system info
-    info = get_system_info()
-
-    # Upload (failures are logged internally)
-    success = _upload_telemetry_sync(info)
-
-    # Mark as collected regardless of upload success to avoid retry
+    # Always mark as collected without sending any data
     mark_telemetry_collected(working_dir)
-
-    return success
+    return False

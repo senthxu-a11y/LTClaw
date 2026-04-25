@@ -14,7 +14,7 @@ import logging
 from pathlib import Path
 from typing import Optional
 
-from qwenpaw.config.utils import load_config
+from ltclaw_gy_x.config.utils import load_config
 
 from .service_manager import ServiceDescriptor, ServiceManager
 from .service_factories import (

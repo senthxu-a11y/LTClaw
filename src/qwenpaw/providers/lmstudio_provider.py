@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """LM Studio Provider implementation."""
 
-from qwenpaw.providers.openai_provider import OpenAIProvider
+from ltclaw_gy_x.providers.openai_provider import OpenAIProvider
 
 
 class LMStudioProvider(OpenAIProvider):

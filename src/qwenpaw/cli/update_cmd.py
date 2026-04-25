@@ -25,11 +25,11 @@ from .process_utils import (
     _base_url,
     _candidate_hosts,
     _extract_port_from_command,
-    _is_qwenpaw_service_command,
+    _is_ltclaw_gy_x_service_command,
     _process_table,
 )
 
-_PYPI_JSON_URL = "https://pypi.org/pypi/qwenpaw/json"
+_PYPI_JSON_URL = "https://pypi.org/pypi/ltclaw_gy_x/json"
 
 
 def _subprocess_text_kwargs() -> dict[str, Any]:
@@ -48,7 +48,7 @@ def _subprocess_text_kwargs() -> dict[str, Any]:
 
 @dataclass(frozen=True)
 class InstallInfo:
-    """Information about the current QwenPaw installation."""
+    """Information about the current LTCLAW-GY.X installation."""
 
     package_dir: str
     python_executable: str
@@ -61,7 +61,7 @@ class InstallInfo:
 
 @dataclass(frozen=True)
 class RunningServiceInfo:
-    """Detected QwenPaw service endpoint state."""
+    """Detected LTCLAW-GY.X service endpoint state."""
 
     is_running: bool
     base_url: str | None = None
@@ -91,7 +91,7 @@ def _is_newer_version(latest: str, current: str) -> bool | None:
 
 
 def _fetch_latest_version() -> str:
-    """Fetch the latest published QwenPaw version from PyPI."""
+    """Fetch the latest published LTCLAW-GY.X version from PyPI."""
     try:
         resp = httpx.get(
             _PYPI_JSON_URL,
@@ -102,17 +102,17 @@ def _fetch_latest_version() -> str:
         data = resp.json()
     except httpx.HTTPError as exc:
         raise click.ClickException(
-            f"Failed to fetch the latest QwenPaw version from PyPI: {exc}",
+            f"Failed to fetch the latest LTCLAW-GY.X version from PyPI: {exc}",
         ) from exc
     except json.JSONDecodeError as exc:
         raise click.ClickException(
             "Received an invalid response from PyPI when checking for the "
-            f"latest QwenPaw version: {exc}",
+            f"latest LTCLAW-GY.X version: {exc}",
         ) from exc
     version = str(data.get("info", {}).get("version", "")).strip()
     if not version:
         raise click.ClickException(
-            "Unable to determine the latest QwenPaw version.",
+            "Unable to determine the latest LTCLAW-GY.X version.",
         )
     return version
 
@@ -137,7 +137,7 @@ def _detect_source_type(
 
 def _detect_installation() -> InstallInfo:
     """Inspect the current Python environment and installation style."""
-    dist = metadata.distribution("qwenpaw")
+    dist = metadata.distribution("ltclaw_gy_x")
     # if installed through uv, installer will be `uv`
     installer = (dist.read_text("INSTALLER") or "pip").strip() or "pip"
 
@@ -169,7 +169,7 @@ def _detect_installation() -> InstallInfo:
 
 
 def _probe_service(base_url: str) -> RunningServiceInfo:
-    """Probe a possible running QwenPaw HTTP service."""
+    """Probe a possible running LTCLAW-GY.X HTTP service."""
     try:
         resp = httpx.get(
             f"{base_url.rstrip('/')}/api/version",
@@ -191,10 +191,10 @@ def _probe_service(base_url: str) -> RunningServiceInfo:
 
 
 def _process_candidate_ports() -> list[int]:
-    """Infer candidate local QwenPaw service ports from running processes."""
+    """Infer candidate local LTCLAW-GY.X service ports from running processes."""
     ports: list[int] = []
     for _pid, command in _process_table():
-        if not _is_qwenpaw_service_command(command):
+        if not _is_ltclaw_gy_x_service_command(command):
             continue
 
         port = _extract_port_from_command(command)
@@ -227,7 +227,7 @@ def _detect_running_service(
     host: str | None,
     port: int | None,
 ) -> RunningServiceInfo:
-    """Detect whether a QwenPaw HTTP service is currently running."""
+    """Detect whether a LTCLAW-GY.X HTTP service is currently running."""
     candidates: list[str] = []
     seen: set[str] = set()
     preferred_hosts: list[str] = []
@@ -268,13 +268,13 @@ def _detect_running_service(
 def _running_service_display(running: RunningServiceInfo) -> str:
     """Build a concise running-service description for user prompts."""
     if not running.base_url:
-        return "a running QwenPaw service"
+        return "a running LTCLAW-GY.X service"
     version_suffix = f" (version {running.version})" if running.version else ""
-    return f"QwenPaw service at {running.base_url}{version_suffix}"
+    return f"LTCLAW-GY.X service at {running.base_url}{version_suffix}"
 
 
 def _confirm_force_shutdown(running: RunningServiceInfo) -> bool:
-    """Ask whether `qwenpaw shutdown` should be used before updating."""
+    """Ask whether `ltclaw_gy_x shutdown` should be used before updating."""
     click.echo("")
     click.secho("!" * 72, fg="yellow", bold=True)
     click.secho(
@@ -289,8 +289,8 @@ def _confirm_force_shutdown(running: RunningServiceInfo) -> bool:
         bold=True,
     )
     click.secho(
-        "Running `qwenpaw shutdown` will forcibly terminate the current "
-        "QwenPaw backend/frontend processes.",
+        "Running `ltclaw_gy_x shutdown` will forcibly terminate the current "
+        "LTCLAW-GY.X backend/frontend processes.",
         fg="red",
         bold=True,
     )
@@ -302,7 +302,7 @@ def _confirm_force_shutdown(running: RunningServiceInfo) -> bool:
     )
     click.echo("")
     return click.confirm(
-        "Run `qwenpaw shutdown` now and continue with the update?",
+        "Run `ltclaw_gy_x shutdown` now and continue with the update?",
         default=False,
     )
 
@@ -311,15 +311,15 @@ def _run_shutdown_for_update(
     info: InstallInfo,
     running: RunningServiceInfo,
 ) -> None:
-    """Run `qwenpaw shutdown` in the current environment before updating."""
-    command = [info.python_executable, "-m", "qwenpaw"]
+    """Run `ltclaw_gy_x shutdown` in the current environment before updating."""
+    command = [info.python_executable, "-m", "ltclaw_gy_x"]
     parsed = urlparse(running.base_url or "")
     if parsed.port is not None:
         command.extend(["--port", str(parsed.port)])
     command.append("shutdown")
 
     click.echo("")
-    click.echo("Running `qwenpaw shutdown` before updating...")
+    click.echo("Running `ltclaw_gy_x shutdown` before updating...")
 
     try:
         result = subprocess.run(
@@ -331,7 +331,7 @@ def _run_shutdown_for_update(
         )
     except OSError as exc:
         raise click.ClickException(
-            "Failed to run `qwenpaw shutdown`: " f"{exc}",
+            "Failed to run `ltclaw_gy_x shutdown`: " f"{exc}",
         ) from exc
 
     output = (result.stdout or "").strip()
@@ -340,8 +340,8 @@ def _run_shutdown_for_update(
 
     if result.returncode != 0:
         raise click.ClickException(
-            "`qwenpaw shutdown` failed. Please stop the running QwenPaw "
-            "service manually before running `qwenpaw update`.",
+            "`ltclaw_gy_x shutdown` failed. Please stop the running LTCLAW-GY.X "
+            "service manually before running `ltclaw_gy_x update`.",
         )
 
 
@@ -350,7 +350,7 @@ def _build_upgrade_command(
     latest_version: str,
 ) -> tuple[list[str], str]:
     """Build the installer command used by the detached update worker."""
-    package_spec = f"qwenpaw=={latest_version}"
+    package_spec = f"ltclaw_gy_x=={latest_version}"
     installer = info.installer.lower()
     if installer.startswith("uv") and shutil.which("uv"):
         return (
@@ -404,7 +404,7 @@ def _spawn_update_worker(
 ) -> subprocess.Popen[str]:
     """Spawn the worker that performs the actual package upgrade."""
     worker_code = (
-        "from qwenpaw.cli.update_cmd import run_update_worker; "
+        "from ltclaw_gy_x.cli.update_cmd import run_update_worker; "
         "import sys; "
         "sys.exit(run_update_worker(sys.argv[1]))"
     )
@@ -517,7 +517,7 @@ def _run_update_worker_foreground(plan_path: Path) -> int:
             return proc.wait()
     except KeyboardInterrupt:
         click.echo("")
-        click.echo("[qwenpaw] Update interrupted. Stopping installer...")
+        click.echo("[ltclaw_gy_x] Update interrupted. Stopping installer...")
         _terminate_update_worker(proc)
         return 130
 
@@ -547,10 +547,10 @@ def run_update_worker(plan_path: str | Path) -> int:
 
     click.echo("")
     click.echo(
-        "[qwenpaw] Updating QwenPaw "
+        "[ltclaw_gy_x] Updating LTCLAW-GY.X "
         f"{plan['current_version']} -> {plan['latest_version']}...",
     )
-    click.echo(f"[qwenpaw] Using installer: {plan['installer_label']}")
+    click.echo(f"[ltclaw_gy_x] Using installer: {plan['installer_label']}")
 
     try:
         with subprocess.Popen(
@@ -565,7 +565,7 @@ def run_update_worker(plan_path: str | Path) -> int:
                     click.echo(line.rstrip())
             return_code = proc.wait()
     except FileNotFoundError as exc:
-        click.echo(f"[qwenpaw] Update failed: {exc}")
+        click.echo(f"[ltclaw_gy_x] Update failed: {exc}")
         return_code = 1
     finally:
         try:
@@ -574,16 +574,16 @@ def run_update_worker(plan_path: str | Path) -> int:
             pass
 
     if return_code == 0:
-        click.echo("[qwenpaw] Update completed successfully.")
+        click.echo("[ltclaw_gy_x] Update completed successfully.")
         click.echo(
-            "[qwenpaw] Please restart any running QwenPaw service "
+            "[ltclaw_gy_x] Please restart any running LTCLAW-GY.X service "
             "to use the new version.",
         )
     else:
-        click.echo(f"[qwenpaw] Update failed with exit code {return_code}.")
+        click.echo(f"[ltclaw_gy_x] Update failed with exit code {return_code}.")
         click.echo(
-            "[qwenpaw] Please fix the error above and run "
-            "`qwenpaw update` again.",
+            "[ltclaw_gy_x] Please fix the error above and run "
+            "`ltclaw_gy_x update` again.",
         )
 
     return return_code
@@ -637,7 +637,7 @@ def _confirm_source_override(info: InstallInfo, yes: bool) -> bool:
 )
 @click.pass_context
 def update_cmd(ctx: click.Context, yes: bool) -> None:
-    """Upgrade QwenPaw in the current Python environment."""
+    """Upgrade LTCLAW-GY.X in the current Python environment."""
     info = _detect_installation()
     latest_version = _fetch_latest_version()
 
@@ -645,7 +645,7 @@ def update_cmd(ctx: click.Context, yes: bool) -> None:
 
     version_check = _is_newer_version(latest_version, __version__)
     if version_check is False:
-        click.echo("QwenPaw is already up to date.")
+        click.echo("LTCLAW-GY.X is already up to date.")
         return
 
     if not _confirm_source_override(info, yes):
@@ -677,8 +677,8 @@ def update_cmd(ctx: click.Context, yes: bool) -> None:
             raise click.ClickException(
                 "Detected "
                 f"{_running_service_display(running)}. "
-                "Please stop it before running `qwenpaw update`, or rerun "
-                "without `--yes` to confirm a forced `qwenpaw shutdown`.",
+                "Please stop it before running `ltclaw_gy_x update`, or rerun "
+                "without `--yes` to confirm a forced `ltclaw_gy_x shutdown`.",
             )
         if not _confirm_force_shutdown(running):
             click.echo("Cancelled.")
@@ -691,12 +691,12 @@ def update_cmd(ctx: click.Context, yes: bool) -> None:
         if running.is_running:
             raise click.ClickException(
                 f"Detected {_running_service_display(running)} "
-                "after `qwenpaw shutdown`. "
-                "Please stop it manually before running `qwenpaw update`.",
+                "after `ltclaw_gy_x shutdown`. "
+                "Please stop it manually before running `ltclaw_gy_x update`.",
             )
 
     if not yes and not click.confirm(
-        f"Update QwenPaw to {latest_version} in the current environment?",
+        f"Update LTCLAW-GY.X to {latest_version} in the current environment?",
         default=True,
     ):
         click.echo("Cancelled.")
@@ -713,13 +713,13 @@ def update_cmd(ctx: click.Context, yes: bool) -> None:
     }
     plan_path = _write_worker_plan(plan)
     click.echo("")
-    click.echo("Starting QwenPaw update...")
+    click.echo("Starting LTCLAW-GY.X update...")
 
     if sys.platform == "win32":
         _run_update_worker_detached(plan_path)
         click.echo(
             "On Windows, the update will continue after this command exits "
-            "to avoid locking `qwenpaw.exe`.",
+            "to avoid locking `ltclaw_gy_x.exe`.",
         )
         click.echo("Keep this terminal open until the update completes.")
         return

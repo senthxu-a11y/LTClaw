@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Custom plan-to-hint generator for QwenPaw.
+"""Custom plan-to-hint generator for LTCLAW-GY.X.
 
 Differences from AgentScope's DefaultPlanToHint:
 

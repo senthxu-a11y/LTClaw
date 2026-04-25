@@ -50,7 +50,7 @@ from ..utils.logging import setup_logger, SuppressPathAccessLogFilter
     default=None,
     help="[DEPRECATED] Number of worker processes. "
     "This option is deprecated and will be removed in a future version. "
-    "QwenPaw always uses 1 worker.",
+    "LTCLAW-GY.X always uses 1 worker.",
 )
 def app_cmd(
     host: str,
@@ -60,7 +60,7 @@ def app_cmd(
     log_level: str,
     hide_access_paths: tuple[str, ...],
 ) -> None:
-    """Run QwenPaw FastAPI app."""
+    """Run LTCLAW-GY.X FastAPI app."""
     # Handle deprecated --workers parameter
     if workers is not None:
         click.echo(
@@ -69,7 +69,7 @@ def app_cmd(
             err=True,
         )
         click.echo(
-            "   QwenPaw always uses 1 worker for stability. "
+            "   LTCLAW-GY.X always uses 1 worker for stability. "
             "Your specified value will be ignored.",
             err=True,
         )
@@ -102,7 +102,7 @@ def app_cmd(
         )
 
     uvicorn.run(
-        "qwenpaw.app._app:app",
+        "ltclaw_gy_x.app._app:app",
         host=host,
         port=port,
         reload=reload,

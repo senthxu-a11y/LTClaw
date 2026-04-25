@@ -4,7 +4,7 @@
 Integration layer between ``runner.py`` and the Mission Mode engine:
 
 - Detects ``/mission`` in the user query.
-- Delegates command parsing to :mod:`~qwenpaw.agents.mission.handler`.
+- Delegates command parsing to :mod:`~ltclaw_gy_x.agents.mission.handler`.
 - Detects an active mission awaiting user input (Phase 1 follow-up).
 """
 from __future__ import annotations

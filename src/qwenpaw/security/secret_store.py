@@ -26,8 +26,8 @@ from ..constant import EnvVarLoader
 logger = logging.getLogger(__name__)
 
 _ENC_PREFIX = "ENC:"
-_KEYRING_SERVICE = "qwenpaw"
-_KEYRING_SERVICE_LEGACY = "copaw"
+_KEYRING_SERVICE = "ltclaw_gy_x"
+_KEYRING_SERVICE_LEGACY = "ltclaw_gy_x"
 _KEYRING_ACCOUNT = "master_key"
 
 
@@ -82,7 +82,7 @@ def _try_keyring_get() -> Optional[str]:
         if value:
             return value
 
-        # Backward compatibility: read legacy CoPaw keyring entry.
+        # Backward compatibility: read legacy LTCLAW-GY.X keyring entry.
         return keyring.get_password(
             _KEYRING_SERVICE_LEGACY,
             _KEYRING_ACCOUNT,

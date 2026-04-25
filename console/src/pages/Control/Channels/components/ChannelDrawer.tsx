@@ -32,49 +32,49 @@ const CHANNELS_WITH_ACCESS_CONTROL: ChannelKey[] = [
   "onebot",
 ];
 
-// Doc EN URLs per channel (anchors on https://qwenpaw.agentscope.io/docs/channels)
+// Doc EN URLs per channel (anchors on https://ltclaw_gy_x.agentscope.io/docs/channels)
 const CHANNEL_DOC_EN_URLS: Partial<Record<ChannelKey, string>> = {
   dingtalk:
-    "https://qwenpaw.agentscope.io/docs/channels/?lang=en#DingTalk-recommended",
-  feishu: "https://qwenpaw.agentscope.io/docs/channels/?lang=en#Feishu-Lark",
+    "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=en#DingTalk-recommended",
+  feishu: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=en#Feishu-Lark",
   imessage:
-    "https://qwenpaw.agentscope.io/docs/channels/?lang=en#iMessage-macOS-only",
-  discord: "https://qwenpaw.agentscope.io/docs/channels/?lang=en#Discord",
-  qq: "https://qwenpaw.agentscope.io/docs/channels/?lang=en#QQ",
-  telegram: "https://qwenpaw.agentscope.io/docs/channels/?lang=en#Telegram",
-  mqtt: "https://qwenpaw.agentscope.io/docs/channels/?lang=en#MQTT",
-  mattermost: "https://qwenpaw.agentscope.io/docs/channels/?lang=en#Mattermost",
-  matrix: "https://qwenpaw.agentscope.io/docs/channels/?lang=en#Matrix",
-  sip: "https://qwenpaw.agentscope.io/docs/channels/?lang=en#SIP",
+    "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=en#iMessage-macOS-only",
+  discord: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=en#Discord",
+  qq: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=en#QQ",
+  telegram: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=en#Telegram",
+  mqtt: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=en#MQTT",
+  mattermost: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=en#Mattermost",
+  matrix: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=en#Matrix",
+  sip: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=en#SIP",
   wecom:
-    "https://qwenpaw.agentscope.io/docs/channels/?lang=en#WeCom-WeChat-Work",
+    "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=en#WeCom-WeChat-Work",
   weixin:
-    "https://qwenpaw.agentscope.io/docs/channels/?lang=en#WeChat-Personal-iLink",
+    "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=en#WeChat-Personal-iLink",
   xiaoyi:
     "https://developer.huawei.com/consumer/cn/doc/service/openclaw-0000002518410344",
   onebot:
-    "https://qwenpaw.agentscope.io/docs/channels/?lang=en#OneBot-v11-NapCat--QQ-full-protocol",
+    "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=en#OneBot-v11-NapCat--QQ-full-protocol",
 };
 
-// Doc ZH URLs per channel (anchors on https://qwenpaw.agentscope.io/docs/channels)
+// Doc ZH URLs per channel (anchors on https://ltclaw_gy_x.agentscope.io/docs/channels)
 const CHANNEL_DOC_ZH_URLS: Partial<Record<ChannelKey, string>> = {
-  dingtalk: "https://qwenpaw.agentscope.io/docs/channels/?lang=zh#钉钉推荐",
-  feishu: "https://qwenpaw.agentscope.io/docs/channels/?lang=zh#飞书",
+  dingtalk: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=zh#钉钉推荐",
+  feishu: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=zh#飞书",
   imessage:
-    "https://qwenpaw.agentscope.io/docs/channels/?lang=zh#iMessage仅-macOS",
-  discord: "https://qwenpaw.agentscope.io/docs/channels/?lang=zh#Discord",
-  qq: "https://qwenpaw.agentscope.io/docs/channels/?lang=zh#QQ",
-  telegram: "https://qwenpaw.agentscope.io/docs/channels/?lang=zh#Telegram",
-  mqtt: "https://qwenpaw.agentscope.io/docs/channels/?lang=zh#MQTT",
-  mattermost: "https://qwenpaw.agentscope.io/docs/channels/?lang=zh#Mattermost",
-  matrix: "https://qwenpaw.agentscope.io/docs/channels/?lang=zh#Matrix",
-  sip: "https://qwenpaw.agentscope.io/docs/channels/?lang=zh#SIP",
-  wecom: "https://qwenpaw.agentscope.io/docs/channels/?lang=zh#企业微信",
-  weixin: "https://qwenpaw.agentscope.io/docs/channels/?lang=zh#微信个人iLink",
+    "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=zh#iMessage仅-macOS",
+  discord: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=zh#Discord",
+  qq: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=zh#QQ",
+  telegram: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=zh#Telegram",
+  mqtt: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=zh#MQTT",
+  mattermost: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=zh#Mattermost",
+  matrix: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=zh#Matrix",
+  sip: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=zh#SIP",
+  wecom: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=zh#企业微信",
+  weixin: "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=zh#微信个人iLink",
   xiaoyi:
     "https://developer.huawei.com/consumer/cn/doc/service/openclaw-0000002518410344",
   onebot:
-    "https://qwenpaw.agentscope.io/docs/channels/?lang=zh#OneBot-v11NapCat--QQ-完整协议",
+    "https://ltclaw_gy_x.agentscope.io/docs/channels/?lang=zh#OneBot-v11NapCat--QQ-完整协议",
 };
 
 const TWILIO_CONSOLE_URL = "https://console.twilio.com";
@@ -116,7 +116,7 @@ export function ChannelDrawer({
   const currentAgent = agents.find((a) => a.id === selectedAgent);
   const defaultMediaDir = currentAgent?.workspace_dir
     ? `${currentAgent.workspace_dir}/media`
-    : "~/.qwenpaw/media";
+    : "~/.ltclaw_gy_x/media";
   const currentLang = i18n.language?.startsWith("zh") ? "zh" : "en";
   const label = activeKey ? getChannelLabel(activeKey, t) : activeLabel;
   const { message } = useAppMessage();
@@ -1100,7 +1100,7 @@ export function ChannelDrawer({
               label={t("channels.weixinBotTokenFile")}
               tooltip={t("channels.weixinBotTokenFileTooltip")}
             >
-              <Input placeholder="~/.qwenpaw/weixin_bot_token" />
+              <Input placeholder="~/.ltclaw_gy_x/weixin_bot_token" />
             </Form.Item>
             <Form.Item name="media_dir" label={t("channels.weixinMediaDir")}>
               <Input placeholder={defaultMediaDir} />
@@ -1210,7 +1210,7 @@ export function ChannelDrawer({
                 CHANNEL_DOC_EN_URLS[activeKey]! ||
                 CHANNEL_DOC_ZH_URLS[activeKey]!;
               const isLTCLAW-GY.XDoc = url.includes(
-                "qwenpaw.agentscope.io/docs/channels/",
+                "ltclaw_gy_x.agentscope.io/docs/channels/",
               );
               const finalUrl =
                 isLTCLAW-GY.XDoc && currentLang === "zh"

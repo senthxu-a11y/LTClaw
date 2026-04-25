@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""CLI entry for Mission Mode — ``qwenpaw mission``."""
+"""CLI entry for Mission Mode — ``ltclaw_gy_x mission``."""
 from __future__ import annotations
 
 import click
@@ -31,7 +31,7 @@ def mission_group():
 def mission_start(ctx, task, agent, verify, max_iterations, base_url):
     """Start a mission with a task description.
 
-    Example: qwenpaw mission start "Add authentication to the API"
+    Example: ltclaw_gy_x mission start "Add authentication to the API"
     """
     task_text = " ".join(task)
     parts = [f"/mission {task_text}"]

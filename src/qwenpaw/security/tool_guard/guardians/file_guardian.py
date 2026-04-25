@@ -30,8 +30,8 @@ _TOOL_FILE_PARAMS: dict[str, tuple[str, ...]] = {
     "write_text_file": ("file_path", "path"),
 }
 
-_SECRET_DIR_CURRENT_NAME = ".qwenpaw.secret"
-_SECRET_DIR_LEGACY_NAME = ".copaw.secret"
+_SECRET_DIR_CURRENT_NAME = ".ltclaw_gy_x.secret"
+_SECRET_DIR_LEGACY_NAME = ".ltclaw_gy_x.secret"
 
 
 def _with_platform_trailing_sep(path: str | Path) -> str:
@@ -147,7 +147,7 @@ def _normalize_path(raw_path: str) -> str:
 def _is_file_guard_enabled() -> bool:
     """Check ``security.file_guard.enabled`` from config."""
     try:
-        from qwenpaw.config import load_config
+        from ltclaw_gy_x.config import load_config
 
         return bool(load_config().security.file_guard.enabled)
     except Exception:
@@ -162,7 +162,7 @@ def _load_sensitive_files_from_config() -> list[str]:
     default.
     """
     try:
-        from qwenpaw.config import load_config
+        from ltclaw_gy_x.config import load_config
 
         configured = list(
             load_config().security.file_guard.sensitive_files or [],

@@ -11,14 +11,14 @@ from typing import Any, List
 from agentscope.model import ChatModelBase
 import anthropic
 
-from qwenpaw.providers.multimodal_prober import (
+from ltclaw_gy_x.providers.multimodal_prober import (
     ProbeResult,
     _PROBE_IMAGE_B64,
     _IMAGE_PROBE_PROMPT,
     _is_media_keyword_error,
     evaluate_image_probe_answer,
 )
-from qwenpaw.providers.provider import ModelInfo, Provider
+from ltclaw_gy_x.providers.provider import ModelInfo, Provider
 
 logger = logging.getLogger(__name__)
 
@@ -135,7 +135,7 @@ class AnthropicProvider(Provider):
             client_kwargs["default_headers"] = {
                 "x-dashscope-agentapp": json.dumps(
                     {
-                        "agentType": "QwenPaw",
+                        "agentType": "LTCLAW-GY.X",
                         "deployType": "UnKnown",
                         "moduleCode": "model",
                         "agentCode": "UnKnown",
@@ -147,7 +147,7 @@ class AnthropicProvider(Provider):
             client_kwargs["default_headers"] = {
                 "X-DashScope-Cdpl": json.dumps(
                     {
-                        "agentType": "QwenPaw",
+                        "agentType": "LTCLAW-GY.X",
                         "deployType": "UnKnown",
                         "moduleCode": "model",
                         "agentCode": "UnKnown",

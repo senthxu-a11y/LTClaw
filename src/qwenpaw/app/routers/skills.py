@@ -300,7 +300,7 @@ def _snapshot_workspace_skill(
     backup_dir: Path | None = None
     if skill_dir.exists():
         backup_root = Path(
-            tempfile.mkdtemp(prefix=f"qwenpaw_skill_rollback_{skill_name}_"),
+            tempfile.mkdtemp(prefix=f"ltclaw_gy_x_skill_rollback_{skill_name}_"),
         )
         backup_dir = backup_root / skill_name
         shutil.copytree(skill_dir, backup_dir)

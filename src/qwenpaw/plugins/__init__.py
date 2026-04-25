@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""QwenPaw Plugin System."""
+"""LTCLAW-GY.X Plugin System."""
 
 from .loader import PluginLoader
 from .registry import PluginRegistry

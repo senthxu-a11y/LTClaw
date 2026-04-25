@@ -60,7 +60,7 @@ ALL_SKILL_ROUTING_CHANNELS = [
 
 _RegistryResult = TypeVar("_RegistryResult")
 _MAX_ZIP_BYTES = 200 * 1024 * 1024
-_REQUIREMENTS_METADATA_NAMESPACES = ("openclaw", "qwenpaw", "clawdbot")
+_REQUIREMENTS_METADATA_NAMESPACES = ("openclaw", "ltclaw_gy_x", "clawdbot")
 _BUILTIN_SKILL_LANGUAGES = ("en", "zh")
 _BUILTIN_SKILL_DIR_RE = re.compile(
     r"^(?P<name>.+)-(?P<language>en|zh)$",
@@ -1959,12 +1959,12 @@ def update_single_builtin(
 
 
 def _extract_emoji_from_metadata(metadata: Any) -> str:
-    """Extract emoji from metadata.qwenpaw.emoji."""
+    """Extract emoji from metadata.ltclaw_gy_x.emoji."""
     if not isinstance(metadata, dict):
         return ""
-    qwenpaw = metadata.get("qwenpaw")
-    if isinstance(qwenpaw, dict):
-        return str(qwenpaw.get("emoji", "") or "")
+    ltclaw_gy_x = metadata.get("ltclaw_gy_x")
+    if isinstance(ltclaw_gy_x, dict):
+        return str(ltclaw_gy_x.get("emoji", "") or "")
     return ""
 
 
@@ -1985,7 +1985,7 @@ def _read_skill_from_dir(skill_dir: Path, source: str) -> SkillInfo | None:
             post = frontmatter.loads(content)
             description = str(post.get("description", "") or "")
 
-            # Extract emoji from metadata.qwenpaw.emoji
+            # Extract emoji from metadata.ltclaw_gy_x.emoji
             emoji = _extract_emoji_from_metadata(post.get("metadata", {}))
         except Exception:
             pass
@@ -2089,7 +2089,7 @@ def _extract_zip_skills(data: bytes) -> tuple[Path, list[tuple[Path, str]]]:
         raise SkillsError(
             message="Uploaded file is not a valid zip archive",
         )
-    tmp_dir = Path(tempfile.mkdtemp(prefix="qwenpaw_skill_upload_"))
+    tmp_dir = Path(tempfile.mkdtemp(prefix="ltclaw_gy_x_skill_upload_"))
     _extract_and_validate_zip(data, tmp_dir)
     real_entries = [
         path for path in tmp_dir.iterdir() if not _is_hidden(path.name)
@@ -2125,7 +2125,7 @@ def _scan_skill_dir_or_raise(skill_dir: Path, skill_name: str) -> None:
 def _staged_skill_dir(skill_name: str) -> Iterator[Path]:
     """Create a temporary skill directory used for staged writes."""
     temp_root = Path(
-        tempfile.mkdtemp(prefix=f"qwenpaw_skill_stage_{skill_name}_"),
+        tempfile.mkdtemp(prefix=f"ltclaw_gy_x_skill_stage_{skill_name}_"),
     )
     stage_dir = temp_root / skill_name
     try:
