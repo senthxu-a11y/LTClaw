@@ -1,22 +1,17 @@
 <div align="center">
 
-# LTCLAW-GY.X
+# LTCLAW-GY.X v1.0
 
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-black.svg?logo=github)](https://github.com/agentscope-ai/LTCLAW-GY.X)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-black.svg?logo=github)](https://github.com/senthxu-a11y/LTclaw1.0)
 [![PyPI](https://img.shields.io/pypi/v/ltclaw-gy-x?color=3775A9&label=PyPI&logo=pypi)](https://pypi.org/project/ltclaw-gy-x/)
-[![Documentation](https://img.shields.io/badge/Docs-Website-green.svg?logo=readthedocs&label=Docs)](https://ltclaw-gy-x.agentscope.io/)
 [![Python Version](https://img.shields.io/badge/python-3.10%20~%20%3C3.14-blue.svg?logo=python&label=Python)](https://www.python.org/downloads/)
-[![Last Commit](https://img.shields.io/github/last-commit/agentscope-ai/LTCLAW-GY.X)](https://github.com/agentscope-ai/LTCLAW-GY.X)
+[![Last Commit](https://img.shields.io/github/last-commit/senthxu-a11y/LTclaw1.0)](https://github.com/senthxu-a11y/LTclaw1.0)
 [![License](https://img.shields.io/badge/license-Apache%202.0-red.svg?logo=apache&label=License)](LICENSE)
 [![Code Style](https://img.shields.io/badge/code%20style-black-black.svg?logo=python&label=CodeStyle)](https://github.com/psf/black)
-[![GitHub Stars](https://img.shields.io/github/stars/agentscope-ai/LTCLAW-GY.X?style=flat&logo=github&color=yellow&label=Stars)](https://github.com/agentscope-ai/LTCLAW-GY.X/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/agentscope-ai/LTCLAW-GY.X?style=flat&logo=github&color=purple&label=Forks)](https://github.com/agentscope-ai/LTCLAW-GY.X/network)
-[![DeepWiki](https://img.shields.io/badge/DeepWiki-Ask_Devin-navy.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAyCAYAAAAnWDnqAAAAAXNSR0IArs4c6QAAA05JREFUaEPtmUtyEzEQhtWTQyQLHNak2AB7ZnyXZMEjXMGeK/AIi+QuHrMnbChYY7MIh8g01fJoopFb0uhhEqqcbWTp06/uv1saEDv4O3n3dV60RfP947Mm9/SQc0ICFQgzfc4CYZoTPAswgSJCCUJUnAAoRHOAUOcATwbmVLWdGoH//PB8mnKqScAhsD0kYP3j/Yt5LPQe2KvcXmGvRHcDnpxfL2zOYJ1mFwrryWTz0advv1Ut4CJgf5uhDuDj5eUcAUoahrdY/56ebRWeraTjMt/00Sh3UDtjgHtQNHwcRGOC98BJEAEymycmYcWwOprTgcB6VZ5JK5TAJ+fXGLBm3FDAmn6oPPjR4rKCAoJCal2eAiQp2x0vxTPB3ALO2CRkwmDy5WohzBDwSEFKRwPbknEggCPB/imwrycgxX2NzoMCHhPkDwqYMr9tRcP5qNrMZHkVnOjRMWwLCcr8ohBVb1OMjxLwGCvjTikrsBOiA6fNyCrm8V1rP93iVPpwaE+gO0SsWmPiXB+jikdf6SizrT5qKasx5j8ABbHpFTx+vFXp9EnYQmLx02h1QTTrl6eDqxLnGjporxl3NL3agEvXdT0WmEost648sQOYAeJS9Q7bfUVoMGnjo4AZdUMQku50McDcMWcBPvr0SzbTAFDfvJqwLzgxwATnCgnp4wDl6Aa+Ax283gghmj+vj7feE2KBBRMW3FzOpLOADl0Isb5587h/U4gGvkt5v60Z1VLG8BhYjbzRwyQZemwAd6cCR5/XFWLYZRIMpX39AR0tjaGGiGzLVyhse5C9RKC6ai42ppWPKiBagOvaYk8lO7DajerabOZP46Lby5wKjw1HCRx7p9sVMOWGzb/vA1hwiWc6jm3MvQDTogQkiqIhJV0nBQBTU+3okKCFDy9WwferkHjtxib7t3xIUQtHxnIwtx4mpg26/HfwVNVDb4oI9RHmx5WGelRVlrtiw43zboCLaxv46AZeB3IlTkwouebTr1y2NjSpHz68WNFjHvupy3q8TFn3Hos2IAk4Ju5dCo8B3wP7VPr/FGaKiG+T+v+TQqIrOqMTL1VdWV1DdmcbO8KXBz6esmYWYKPwDL5b5FA1a0hwapHiom0r/cKaoqr+27/XcrS5UwSMbQAAAABJRU5ErkJggg==)](https://deepwiki.com/agentscope-ai/LTCLAW-GY.X)
-[![Discord](https://img.shields.io/badge/Discord-Join_Us-blueviolet.svg?logo=discord)](https://discord.gg/eYMpfnkG8h)
-[![X](https://img.shields.io/badge/X-Follow_Us-black.svg?logo=x)](https://x.com/agentscope_ai)
-[![DingTalk](https://img.shields.io/badge/DingTalk-Join_Us-orange.svg)](https://qr.dingtalk.com/action/joingroup?code=v1,k1,OmDlBXpjW+I2vWjKDsjvI9dhcXjGZi3bQiojOq3dlDw=&_dt_no_comment=1&origin=11)
+[![GitHub Stars](https://img.shields.io/github/stars/senthxu-a11y/LTclaw1.0?style=flat&logo=github&color=yellow&label=Stars)](https://github.com/senthxu-a11y/LTclaw1.0/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/senthxu-a11y/LTclaw1.0?style=flat&logo=github&color=purple&label=Forks)](https://github.com/senthxu-a11y/LTclaw1.0/network)
 
-[[Documentation](https://ltclaw-gy-x.agentscope.io/)] [[中文](README_zh.md)] [[日本語](README_ja.md)] [[Русский](README_ru.md)]
+[[中文](README_zh.md)] [[日本語](README_ja.md)] [[Русский](README_ru.md)]
 
 <p align="center">
   <img src="https://gw.alicdn.com/imgextra/i1/O1CN01sens5C1TuwioeGexL_!!6000000002443-55-tps-771-132.svg" alt="LTCLAW-GY.X Logo" width="120">
@@ -300,7 +295,7 @@ If you're not comfortable with command-line tools, you can download and use LTCL
 
 #### Download
 
-Download the desktop app from [GitHub Releases](https://github.com/agentscope-ai/LTCLAW-GY.X/releases):
+Download the desktop app from [GitHub Releases](https://github.com/senthxu-a11y/LTCLAW-GY.X/releases):
 - **Windows**: `LTCLAW-GY.X-Setup-<version>.exe`
 - **macOS**: `LTCLAW-GY.X-<version>-macOS.zip` (Apple Silicon recommended)
 
@@ -407,7 +402,7 @@ For common questions, troubleshooting tips, and known issues, please visit the *
 
 ## Staying ahead
 
-<a href="https://github.com/agentscope-ai/LTCLAW-GY.X">
+<a href="https://github.com/senthxu-a11y/LTCLAW-GY.X">
   <img src="https://img.alicdn.com/imgextra/i1/O1CN01V8HYv61By0HYcIDaq_!!6000000000013-1-tps-1698-954.gif" width="600" alt="Star LTCLAW-GY.X" />
 </a>
 
@@ -444,7 +439,7 @@ _Status:_ **In Progress** — actively being worked on; **Planned** — queued o
 ## Install from source
 
 ```bash
-git clone https://github.com/agentscope-ai/LTCLAW-GY.X.git
+git clone https://github.com/senthxu-a11y/LTCLAW-GY.X.git
 cd LTCLAW-GY.X
 
 # Build console frontend first (required for web UI)
@@ -468,12 +463,12 @@ pip install -e .
 
 ## Contributing
 
-LTCLAW-GY.X evolves through open collaboration, and we welcome all forms of contribution! Check the [Roadmap](#roadmap) above (especially items marked **Seeking Contributors**) to find areas that interest you, and read [CONTRIBUTING](https://github.com/agentscope-ai/LTCLAW-GY.X/blob/main/CONTRIBUTING.md) to get started. We particularly welcome:
+LTCLAW-GY.X evolves through open collaboration, and we welcome all forms of contribution! Check the [Roadmap](#roadmap) above (especially items marked **Seeking Contributors**) to find areas that interest you, and read [CONTRIBUTING](https://github.com/senthxu-a11y/LTCLAW-GY.X/blob/main/CONTRIBUTING.md) to get started. We particularly welcome:
 
 - **Horizontal expansion** — new channels, model providers, skills, MCPs.
 - **Existing feature extension & refinement** — display and interaction improvements, download hints, Windows path compatibility, etc.
 
-Join [GitHub Discussions](https://github.com/agentscope-ai/LTCLAW-GY.X/discussions) to discuss ideas or pick up tasks.
+Join [GitHub Discussions](https://github.com/senthxu-a11y/LTCLAW-GY.X/discussions) to discuss ideas or pick up tasks.
 
 ---
 
@@ -486,7 +481,7 @@ We hope it is not a cold tool, but an intelligent and warm "little paw" always r
 
 ## Built by
 
-[AgentScope team](https://github.com/agentscope-ai) · [AgentScope](https://github.com/agentscope-ai/agentscope) · [AgentScope Runtime](https://github.com/agentscope-ai/agentscope-runtime) · [ReMe](https://github.com/agentscope-ai/ReMe)
+[AgentScope team](https://github.com/senthxu-a11y) · [AgentScope](https://github.com/senthxu-a11y/agentscope) · [AgentScope Runtime](https://github.com/senthxu-a11y/agentscope-runtime) · [ReMe](https://github.com/senthxu-a11y/ReMe)
 
 ---
 
@@ -527,6 +522,6 @@ LTCLAW-GY.X is released under the [Apache License 2.0](LICENSE).
 
 All thanks to our contributors:
 
-<a href="https://github.com/agentscope-ai/LTCLAW-GY.X/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=agentscope-ai/LTCLAW-GY.X" alt="Contributors" />
+<a href="https://github.com/senthxu-a11y/LTCLAW-GY.X/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=senthxu-a11y/LTCLAW-GY.X" alt="Contributors" />
 </a>

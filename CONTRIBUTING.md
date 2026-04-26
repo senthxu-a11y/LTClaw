@@ -4,7 +4,7 @@
 
 Thank you for your interest in contributing to LTCLAW-GY.X! LTCLAW-GY.X is an open-source **personal AI assistant** that runs in your own environment—on your machine or in the cloud. It connects to DingTalk, Feishu, QQ, Discord, iMessage, and other chat apps, supports scheduled tasks and heartbeat, and extends its capabilities through **Skills**. We warmly welcome contributions that help make LTCLAW-GY.X more useful for everyone: whether you add a new channel, a new model provider, a Skill, improve docs, or fix bugs.
 
-**Quick links:** [GitHub](https://github.com/agentscope-ai/LTCLAW-GY.X) · [Docs](https://ltclaw-gy-x.agentscope.io/) · [License: Apache 2.0](LICENSE)
+**Quick links:** [GitHub](https://github.com/senthxu-a11y/LTCLAW-GY.X) · [Docs](https://ltclaw-gy-x.agentscope.io/) · [License: Apache 2.0](LICENSE)
 
 ---
 
@@ -16,7 +16,7 @@ To keep collaboration smooth and maintain quality, please follow these guideline
 
 Before starting:
 
-- **Check [Open Issues](https://github.com/agentscope-ai/LTCLAW-GY.X/issues)** and any [Projects](https://github.com/agentscope-ai/LTCLAW-GY.X/projects) or roadmap labels.
+- **Check [Open Issues](https://github.com/senthxu-a11y/LTCLAW-GY.X/issues)** and any [Projects](https://github.com/senthxu-a11y/LTCLAW-GY.X/projects) or roadmap labels.
 - **If a related issue exists** and is open or unassigned: comment to say you want to work on it to avoid duplicate effort.
 - **If no related issue exists**: open a new issue describing your proposal. The maintainers will respond and can help align with the project direction.
 
@@ -228,8 +228,8 @@ If you add or change platform support, please test on the affected OS and mentio
 
 ## Getting Help
 
-- **Discussions:** [GitHub Discussions](https://github.com/agentscope-ai/LTCLAW-GY.X/discussions)
-- **Bugs and features:** [GitHub Issues](https://github.com/agentscope-ai/LTCLAW-GY.X/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/senthxu-a11y/LTCLAW-GY.X/discussions)
+- **Bugs and features:** [GitHub Issues](https://github.com/senthxu-a11y/LTCLAW-GY.X/issues)
 - **Community:** DingTalk group (see [README](README.md)) and [Discord](https://discord.gg/eYMpfnkG8h)
 
 Thank you for contributing to LTCLAW-GY.X. Your work helps make it a better assistant for everyone. 🐾
