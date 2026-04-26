@@ -1,28 +1,6 @@
-<div align="center">
-
 # LTCLAW-GY.X v1.0
 
-[![GitHub 仓库](https://img.shields.io/badge/GitHub-仓库-black.svg?logo=github)](https://github.com/senthxu-a11y/LTclaw1.0)
-[![PyPI](https://img.shields.io/pypi/v/ltclaw-gy-x?color=3775A9&label=PyPI&logo=pypi)](https://pypi.org/project/ltclaw-gy-x/)
-[![Python 版本](https://img.shields.io/badge/python-3.10%20~%20%3C3.14-blue.svg?logo=python&label=Python)](https://www.python.org/downloads/)
-[![最后提交](https://img.shields.io/github/last-commit/senthxu-a11y/LTclaw1.0)](https://github.com/senthxu-a11y/LTclaw1.0)
-[![许可证](https://img.shields.io/badge/license-Apache%202.0-red.svg?logo=apache&label=%E8%AE%B8%E5%8F%AF%E8%AF%81)](LICENSE)
-[![代码风格](https://img.shields.io/badge/code%20style-black-black.svg?logo=python&label=%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC)](https://github.com/psf/black)
-[![GitHub Star](https://img.shields.io/github/stars/senthxu-a11y/LTclaw1.0?style=flat&logo=github&color=yellow&label=Star)](https://github.com/senthxu-a11y/LTclaw1.0/stargazers)
-[![GitHub Fork](https://img.shields.io/github/forks/senthxu-a11y/LTclaw1.0?style=flat&logo=github&color=purple&label=Fork)](https://github.com/senthxu-a11y/LTclaw1.0/network)
-
-
-<p align="center">
-  <img src="https://gw.alicdn.com/imgextra/i1/O1CN01sens5C1TuwioeGexL_!!6000000002443-55-tps-771-132.svg" alt="LTCLAW-GY.X Logo" width="120">
-</p>
-
-<p align="center"><b>懂你所需，伴你左右。</b></p>
-
-</div>
-
-你的 AI 个人助理；安装极简、本地与云上均可部署；支持多端接入、能力轻松扩展。
-
-> **核心能力：**
+懂你所需，伴你左右。
 >
 > **由你掌控** — 记忆与个性化完全由你掌控，支持本地或云端部署。无第三方托管，无数据上传。
 >
